@@ -1,3 +1,5 @@
 class Author < ApplicationRecord
-has_many :books
+has_many :book_authors
+
+validates_presence_of :name
 end
