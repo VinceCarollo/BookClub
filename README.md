@@ -1,3 +1,6 @@
+Co-authored-by: Vince Carollo <vincecarollo@gmail.com>
+Co-authored-by: Patrick Duvall <duvallp208@gmail.com>
+
 # Book Club
 
 Backend Module 2 paired Rails project, weeks 2 and 3
