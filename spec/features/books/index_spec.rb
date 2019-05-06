@@ -11,7 +11,7 @@ describe "as a visitor" do
 
     before :each do
       @book_1 = create(:book)
-      require "pry"; binding.pry
+      # require "pry"; binding.pry
     end
 
     it "displays book informtaion" do
