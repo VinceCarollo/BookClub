@@ -14,4 +14,12 @@ describe Book do
     it {should have_many(:authors).through(:book_authors)}
   end
 
+  # describe ".review_count" do
+  #
+  # end
+  #
+  # describe ".review_average" do
+  #
+  # end
+
 end
