@@ -10,13 +10,11 @@ describe "as a visitor" do
   describe 'I visit book index page' do
 
     before :each do
-      @book_1 = create(:book)
-      # require "pry"; binding.pry
+      book_author = create(:book_author)
+      binding.pry
     end
 
     it "displays book informtaion" do
-
-
 
       visit books_path
 
