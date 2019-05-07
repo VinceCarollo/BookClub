@@ -25,13 +25,26 @@ describe "as a visitor" do
     it "displays book informtaion" do
 
       visit books_path
-      Book.all.each do |book|
-        within("#book-#{book.id}")  do
-          expect(page).to have_content(book.title)
-          expect(page).to have_content("Author: #{book.authors}")
-          expect(page).to have_content("Page Count: #{book.page_count}")
-          expect(page).to have_content("Published In: #{book.published}")
-        end
+        within("#book-#{@book_1.id}")  do
+          expect(page).to have_content(@book_1.title)
+          expect(page).to have_content(@author_1.name)
+          expect(page).to have_content(@author_2.name)
+          expect(page).to have_content("Page Count: #{@book_1.pages}")
+          expect(page).to have_content("Published In: #{@book_1.published}")
+      end
+
+        within("#book-#{@book_2.id}")  do
+          expect(page).to have_content(@book_2.title)
+          expect(page).to have_content(@author_2.name)
+          expect(page).to have_content("Page Count: #{@book_2.pages}")
+          expect(page).to have_content("Published In: #{@book_2.published}")
+      end
+
+        within("#book-#{@book_3.id}")  do
+          expect(page).to have_content(@book_3.title)
+          expect(page).to have_content(@author_3.name)
+          expect(page).to have_content("Page Count: #{@book_3.pages}")
+          expect(page).to have_content("Published In: #{@book_3.published}")
       end
 
     end
