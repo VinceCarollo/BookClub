@@ -11,7 +11,7 @@ class Book < ApplicationRecord
     reviews.count
   end
   def review_average
-    self.reviews.average(:rating).to_f
+    self.reviews.average(:rating)
     # require "pry"; binding.pry
   end
 

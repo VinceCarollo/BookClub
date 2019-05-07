@@ -9,7 +9,7 @@ require "rails_helper"
 describe "as a visitor" do
   describe 'I visit book index page' do
 
-    before :each do
+    before :all do
       @book_1 = create(:book)
       @book_2 = create(:book)
       @book_3 = create(:book)
@@ -60,7 +60,7 @@ describe "as a visitor" do
     it 'displays average book rating' do
 
       visit books_path
-      Book.first.review_average
+      # Book.first.review_average
 
       within("#book-#{@book_1.id}")  do
         expect(page).to have_content("Average Review: 3.0")
@@ -68,6 +68,7 @@ describe "as a visitor" do
       end
 
       within("#book-#{@book_2.id}")  do
+
         expect(page).to have_content("Average Review: 2.66")
         expect(page).to have_content("Total Reviews: 3")
       end
