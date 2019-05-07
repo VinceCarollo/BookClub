@@ -10,24 +10,32 @@ describe "as a visitor" do
   describe 'I visit book index page' do
 
     before :each do
-      book_author = create(:book_author)
-      binding.pry
+      @book_1 = create(:book)
+      @book_2 = create(:book)
+      @book_3 = create(:book)
+      @author_1 = create(:author)
+      @author_2 = create(:author)
+      @author_3 = create(:author)
+      BookAuthor.create(book: @book_1, author: @author_1)
+      BookAuthor.create(book: @book_1, author: @author_2)
+      BookAuthor.create(book: @book_2, author: @author_2)
+      BookAuthor.create(book: @book_3, author: @author_3)
     end
 
     it "displays book informtaion" do
 
       visit books_path
-
-      within("#book-#{book_1.id}")  do
-        expect(page).to have_content(book_1.title)
-        expect(page).to have_content("Author: #{book_1.authors}")
-        expect(page).to have_content("Page Count: #{book_1.page_count}")
-        expect(page).to have_content("Published In: #{book_1.published}")
+      Book.all.each do |book|
+        within("#book-#{book.id}")  do
+          expect(page).to have_content(book.title)
+          expect(page).to have_content("Author: #{book.authors}")
+          expect(page).to have_content("Page Count: #{book.page_count}")
+          expect(page).to have_content("Published In: #{book.published}")
+        end
       end
 
     end
 
   end
-
 
 end
