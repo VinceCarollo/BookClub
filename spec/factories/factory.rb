@@ -1,12 +1,16 @@
 FactoryBot.define do
+  sequence(:title) { |n| "Title #{n}" }
+  sequence(:pages) { |n| (n + 200) * 4 }
+  sequence(:published) { |n| n + 1977}
+
   factory :book do
-    title { "Slade House" }
-    pages { 168 }
-    published { 2016 }
+    title
+    pages
+    published
   end
 
   factory :author do
-    name { "jon" }
+    sequence(:name) { |n| "Author #{n}" }
   end
 
   factory :book_author do
