@@ -5,9 +5,12 @@
      <%= author.name %>
      <% end %>
 
-     /p>
+     </p>
    <p>Page Count: <%= book.pages %></p>
    <p>Published In: <%= book.published %></p>
+   <p>Average Review: <%=
+      (book.review_average.to_f) %></p>
+   <p>Total Reviews: <%= book.review_count %></p>
    <% end %>
 
  </section>
