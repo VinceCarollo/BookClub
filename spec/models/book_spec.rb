@@ -6,7 +6,7 @@ describe Book do
     it {should validate_presence_of(:published)}
     it {should validate_presence_of(:pages)}
     it {should have_many(:book_authors)}
-    # it {should belong_to(:author)}
+    it {should have_many(:authors).through(:book_authors)}
   end
 
 
