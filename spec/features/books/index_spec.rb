@@ -20,11 +20,18 @@ describe "as a visitor" do
       BookAuthor.create(book: @book_1, author: @author_2)
       BookAuthor.create(book: @book_2, author: @author_2)
       BookAuthor.create(book: @book_3, author: @author_3)
+      @review_1 = create(:review, book: @book_1)
+      @review_2 = create(:review, book: @book_1)
+      @review_3 = create(:review, book: @book_1)
+      @review_4 = create(:review, book: @book_2)
+      @review_5 = create(:review, book: @book_2)
+      @review_6 = create(:review, book: @book_2)
     end
 
     it "displays book informtaion" do
 
       visit books_path
+
         within("#book-#{@book_1.id}")  do
           expect(page).to have_content(@book_1.title)
           expect(page).to have_content(@author_1.name)
@@ -48,6 +55,28 @@ describe "as a visitor" do
       end
 
     end
+
+
+    it 'displays average book rating' do
+
+      visit books_path
+
+      within("#book-#{@book_1.id}")  do
+        expect(page).to have_content("Average Review: 3.0")
+        expect(page).to have_content("Total Reviews: 3")
+      end
+
+      within("#book-#{@book_2.id}")  do
+        expect(page).to have_content("Average Review: 2.66")
+        expect(page).to have_content("Total Reviews: 3")
+      end
+
+
+    end
+# As a Visitor,
+# When I visit the book index page,
+# Next to each book title, I see its average book rating
+# And I also see the total number of reviews for the book.
 
   end
 

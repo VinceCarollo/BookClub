@@ -5,4 +5,11 @@ class Book < ApplicationRecord
   validates_presence_of :title, :pages, :published
 
 
+  def review_count
+    self.reviews.count
+  end
+  def review_average
+  end
+
+
 end
