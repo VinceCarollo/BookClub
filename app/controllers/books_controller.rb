@@ -10,6 +10,10 @@ class BooksController < ApplicationController
         @books = Book.published_sort_asc
     elsif params[:sort] == 'publisheddesc'
       @books = Book.published_sort_desc
+    elsif params[:sort] == 'reviewsasc'
+      @books = Book.reviews_sort_asc
+    elsif params[:sort] == 'reviewsdesc'
+      @books = Book.reviews_sort_desc
     else
       @books = Book.all
     end

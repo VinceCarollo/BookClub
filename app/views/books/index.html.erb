@@ -2,6 +2,8 @@
 <a href= '/books?sort=pagesdesc'>Page Count Desc</a>
 <a href= '/books?sort=publishedasc'>Published Asc</a>
 <a href= '/books?sort=publisheddesc'>Published Desc</a>
+<a href= '/books?sort=reviewsasc'>Reviews Asc</a>
+<a href= '/books?sort=reviewsdesc'>Reviews Desc</a>
 <% @books.each do |book|  %>
  <section class='books' id="book-<%= book.id %>">
    <p>Title: <%= book.title %></p>
