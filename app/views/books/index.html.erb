@@ -1,5 +1,7 @@
+<a href='/books?sort=pagesasc'>Page Count Asc</a>
+<a href= '/books?sort=pagesdesc'>Page Count Desc</a>
 <% @books.each do |book|  %>
- <section id="book-<%= book.id %>">
+ <section class='books' id="book-<%= book.id %>">
    <p>Title: <%= book.title %></p>
    <p>Author: <% book.authors.each do |author| %>
      <%= author.name %>
@@ -9,8 +11,7 @@
    <p>Page Count: <%= book.pages %></p>
    <p>Published In: <%= book.published %></p>
    <p>Average Review: <%=
-      (book.review_average.to_f) %></p>
+      (book.review_average.to_f.round(2)) %></p>
    <p>Total Reviews: <%= book.review_count %></p>
    <% end %>
-
  </section>
