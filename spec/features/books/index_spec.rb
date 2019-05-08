@@ -69,17 +69,26 @@ describe "as a visitor" do
 
       within("#book-#{@book_2.id}")  do
 
-        expect(page).to have_content("Average Review: 2.66")
+        expect(page).to have_content("Average Review: 2.67")
         expect(page).to have_content("Total Reviews: 3")
       end
 
 
     end
-# As a Visitor,
-# When I visit the book index page,
-# Next to each book title, I see its average book rating
-# And I also see the total number of reviews for the book.
+
+    it 'sorts all books' do
+
+      visit books_path
+
+      click_link 'Rating'
+      
+      expect(current_path).to eq('/books?sort=rating')
+
+      expect(page.all('.books')[0]).to have_content(@book_3.title)
+      expect(page.all('.books')[1]).to have_content(@book_2.title)
+      expect(page.all('.books')[2]).to have_content(@book_1.title)
+
+    end
 
   end
-
 end
