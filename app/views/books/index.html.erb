@@ -1,5 +1,6 @@
 <a href='/books?sort=pagesasc'>Page Count Asc</a>
 <a href= '/books?sort=pagesdesc'>Page Count Desc</a>
+<a href= '/books?sort=publishedasc'>Published Asc</a>
 <% @books.each do |book|  %>
  <section class='books' id="book-<%= book.id %>">
    <p>Title: <%= book.title %></p>

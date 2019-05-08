@@ -8,8 +8,13 @@ class Book < ApplicationRecord
   def self.page_sort_asc
     self.order(:pages)
   end
+
   def self.page_sort_desc
     self.order(:pages).reverse_order
+  end
+
+  def self.published_sort_asc
+    self.order(:published)
   end
 
   def review_count
