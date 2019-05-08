@@ -2,17 +2,18 @@ class BooksController < ApplicationController
 
   def index
     # require "pry"; binding.pry
-    if params[:sort] == 'pagesasc'
-    @books = Book.page_sort_asc
-    elsif params[:sort] == 'pagesdesc'
+    case params[:sort]
+    when 'pagesasc'
+      @books = Book.page_sort_asc
+    when 'pagesdesc'
         @books = Book.page_sort_desc
-    elsif params[:sort] == 'publishedasc'
+    when 'publishedasc'
         @books = Book.published_sort_asc
-    elsif params[:sort] == 'publisheddesc'
+    when 'publisheddesc'
       @books = Book.published_sort_desc
-    elsif params[:sort] == 'reviewsasc'
+    when 'reviewsasc'
       @books = Book.reviews_sort_asc
-    elsif params[:sort] == 'reviewsdesc'
+    when 'reviewsdesc'
       @books = Book.reviews_sort_desc
     else
       @books = Book.all
