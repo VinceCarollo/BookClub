@@ -10,7 +10,7 @@ describe "as a visitor" do
   describe 'I visit book index page' do
 
     before :each do
-      @book_1 = Book.create!(title: 'Book 1', published: 1955, pages: 155)
+      @book_1 = Book.create!(title: 'Book 1', published: 1967, pages: 155)
       @book_2 = Book.create!(title: 'Book 2', published: 1965, pages: 245)
       @book_3 = Book.create!(title: 'Book 3', published: 1975, pages: 33)
       @author_1 = Author.create!(name: 'Author 1')
@@ -84,18 +84,24 @@ describe "as a visitor" do
       visit books_path
 
       click_link 'Page Count Asc'
-
-
       expect(page.all('.books')[0]).to have_content(@book_3.title)
       expect(page.all('.books')[1]).to have_content(@book_1.title)
       expect(page.all('.books')[2]).to have_content(@book_2.title)
 
       click_link 'Page Count Desc'
-      save_and_open_page
-      # require "pry"; binding.pry
       expect(page.all('.books')[0]).to have_content(@book_2.title)
       expect(page.all('.books')[1]).to have_content(@book_1.title)
       expect(page.all('.books')[2]).to have_content(@book_3.title)
+
+      click_link 'Published Asc'
+      expect(page.all('.books')[0]).to have_content(@book_2.title)
+      expect(page.all('.books')[1]).to have_content(@book_1.title)
+      expect(page.all('.books')[2]).to have_content(@book_3.title)
+
+      click_link 'Published Desc'
+      expect(page.all('.books')[0]).to have_content(@book_3.title)
+      expect(page.all('.books')[1]).to have_content(@book_1.title)
+      expect(page.all('.books')[2]).to have_content(@book_2.title)
 
     end
 
