@@ -80,8 +80,8 @@ describe "as a visitor" do
 
       visit books_path
 
-      click_link 'Rating'
-      
+      # click_link 'Rating'
+      visit "/books?sort=rating"
       expect(current_path).to eq('/books?sort=rating')
 
       expect(page.all('.books')[0]).to have_content(@book_3.title)
