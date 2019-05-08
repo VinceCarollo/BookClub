@@ -6,7 +6,10 @@ class Book < ApplicationRecord
   validates_presence_of :title, :pages, :published
 
   def self.page_sort_asc
-    self.sort(:pages)
+    self.order(:pages)
+  end
+  def self.page_sort_desc
+    self.order(:pages).reverse_order
   end
 
   def review_count
