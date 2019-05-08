@@ -109,6 +109,11 @@ describe "as a visitor" do
       expect(page.all('.books')[1]).to have_content(@book_1.title)
       expect(page.all('.books')[2]).to have_content(@book_2.title)
 
+      click_link 'Reviews Desc'
+      expect(page.all('.books')[0]).to have_content(@book_2.title)
+      expect(page.all('.books')[1]).to have_content(@book_1.title)
+      expect(page.all('.books')[2]).to have_content(@book_3.title)
+
     end
 
   end

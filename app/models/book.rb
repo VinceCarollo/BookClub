@@ -22,6 +22,9 @@ class Book < ApplicationRecord
   def self.reviews_sort_asc
     self.group(:id).sort_by(&:review_average)
   end
+  def self.reviews_sort_desc
+    self.group(:id).sort_by(&:review_average).reverse
+  end
 
   def review_count
     reviews.count
