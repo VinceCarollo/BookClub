@@ -1,4 +1,4 @@
-<a href="/books?sort=rating">Rating</a>
+<a href= <%  books_path(sort: :pages) %>>Rating</a>
 <% @books.each do |book|  %>
  <section class='books' id="book-<%= book.id %>">
    <p>Title: <%= book.title %></p>
