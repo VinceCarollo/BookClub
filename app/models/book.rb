@@ -16,6 +16,9 @@ class Book < ApplicationRecord
   def self.published_sort_asc
     self.order(:published)
   end
+  def self.published_sort_desc
+    self.order(:published).reverse_order
+  end
 
   def review_count
     reviews.count
