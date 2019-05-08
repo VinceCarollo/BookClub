@@ -19,10 +19,14 @@ class Book < ApplicationRecord
   def self.published_sort_desc
     self.order(:published).reverse_order
   end
+  def self.reviews_sort_asc
+    self.group(:id).sort_by(&:review_average)
+  end
 
   def review_count
     reviews.count
   end
+
 
   def review_average
     self.reviews.average(:rating)
