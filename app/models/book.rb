@@ -22,11 +22,22 @@ class Book < ApplicationRecord
   end
 
   def self.reviews_sort_asc
+
     self.joins(:reviews)
         .select('avg(rating) as avg_rating, books.*')
         .group('books.id')
         .order('avg_rating')
   end
+
+  def self.highest_3_rated_titles
+    self.reviews_sort_desc.limit(3)
+  end
+
+  def self.lowest_3_rated_titles
+    self.reviews_sort_asc.limit(3)
+  end
+
+  # def 
 
   def self.reviews_sort_desc
     self.joins(:reviews)

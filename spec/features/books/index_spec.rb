@@ -106,52 +106,55 @@ describe "as a visitor" do
       expect(page.all('.books')[2]).to have_content(@book_2.title)
 
       click_link 'Reviews Asc'
+
       expect(page.all('.books')[0]).to have_content(@book_3.title)
       expect(page.all('.books')[1]).to have_content(@book_1.title)
       expect(page.all('.books')[2]).to have_content(@book_2.title)
 
       click_link 'Reviews Desc'
+
       expect(page.all('.books')[0]).to have_content(@book_2.title)
       expect(page.all('.books')[1]).to have_content(@book_1.title)
       expect(page.all('.books')[2]).to have_content(@book_3.title)
 
     end
 
-    # it 'shows statistics' do
-    #   book_4 = Book.create!(title: 'Book 4', published: 2018, pages: 223)
-    #   book_5 = Book.create!(title: 'Book 5', published: 1955, pages: 478)
-    #   review_8 = Review.create!(title: 'Review 8', rating: 4, body: 'content 7', book: book_4, user: @user_3)
-    #   review_9 = Review.create!(title: 'Review 9', rating: 5, body: 'content 7', book: book_5, user: @user_4)
-    #
-    #   visit books_path
-    #
-    #   within '#statistics' do
-    #
-    #
-    #     within '#highest_rated' do
-    #       expect(page).to have_content("Highest Rated:")
-    #       expect(page).to have_content(book_4.title)
-    #       expect(page).to have_content(book_5.title)
-    #       expect(page).to have_content(@book_2.title)
-    #     end
-    #
-    #     within '#lowest_rated' do
-    #       expect(page).to have_content("Lowest Rated:")
-    #       expect(page).to have_content(@book_1.title)
-    #       expect(page).to have_content(@book_2.title)
-    #       expect(page).to have_content(@book_3.title)
-    #     end
-    #
-    #     within '#most_ratings' do
-    #       expect(page).to have_content("Most Reviews:")
-    #       expect(page).to have_content(@user_1.name)
-    #       expect(page).to have_content(@user_2.name)
-    #       expect(page).to have_content(@user_3.name)
-    #     end
-    #
-    #   end
+    it 'shows statistics' do
+      book_4 = Book.create!(title: 'Book 4', published: 2018, pages: 223)
+      book_5 = Book.create!(title: 'Book 5', published: 1955, pages: 478)
+      review_8 = Review.create!(title: 'Review 8', rating: 4, body: 'content 7', book: book_4, user: @user_3)
+      review_9 = Review.create!(title: 'Review 9', rating: 5, body: 'content 7', book: book_5, user: @user_4)
 
-    # end
+
+      visit books_path
+
+      within '#statistics' do
+
+
+        within '#highest_rated' do
+          expect(page).to have_content("Highest Rated:")
+          expect(page).to have_content(book_4.title)
+          expect(page).to have_content(book_5.title)
+          expect(page).to have_content(@book_2.title)
+        end
+
+        within '#lowest_rated' do
+          expect(page).to have_content("Lowest Rated:")
+          expect(page).to have_content(@book_1.title)
+          expect(page).to have_content(@book_2.title)
+          expect(page).to have_content(@book_3.title)
+        end
+
+        within '#most_ratings' do
+          expect(page).to have_content("Most Reviews:")
+          expect(page).to have_content(@user_1.name)
+          expect(page).to have_content(@user_2.name)
+          expect(page).to have_content(@user_3.name)
+        end
+
+      end
+
+    end
 
   end
 end
