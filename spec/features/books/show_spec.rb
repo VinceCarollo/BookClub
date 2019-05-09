@@ -55,4 +55,39 @@ RSpec.describe 'When a visitor goes to a books show page' do
     end
   end
 
+  it 'shows book stats' do
+    review_10 = Review.create!(title: 'Review 10', rating: 5, body: 'content 10', book: @book_1, user: @user_4)
+
+    visit book_path(@book_1)
+
+    within '#statistics' do
+      within '#top_three' do
+        expect(page).to have_content(review_10.title)
+        expect(page).to have_content(review_10.rating)
+        expect(page).to have_content(review_10.user.name)
+        expect(page).to have_content(@review_3.title)
+        expect(page).to have_content(@review_3.rating)
+        expect(page).to have_content(@review_3.user.name)
+        expect(page).to have_content(@review_2.title)
+        expect(page).to have_content(@review_2.rating)
+        expect(page).to have_content(@review_2.user.name)
+      end
+
+      within '#bottom_three' do
+        expect(page).to have_content(@review_1.title)
+        expect(page).to have_content(@review_1.rating)
+        expect(page).to have_content(@review_1.user.name)
+        expect(page).to have_content(@review_3.title)
+        expect(page).to have_content(@review_3.rating)
+        expect(page).to have_content(@review_3.user.name)
+        expect(page).to have_content(@review_2.title)
+        expect(page).to have_content(@review_2.rating)
+        expect(page).to have_content(@review_2.user.name)
+      end
+
+      expect(page).to have_content(3.5)
+    end
+
+  end
+
 end
