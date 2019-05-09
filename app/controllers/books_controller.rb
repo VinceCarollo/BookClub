@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 
   def index
-    # require "pry"; binding.pry
+    User.three_ratingest_users
     case params[:sort]
     when 'pagesasc'
       @books = Book.page_sort_asc
@@ -18,6 +18,14 @@ class BooksController < ApplicationController
     else
       @books = Book.all
     end
+
+    @highest_3 =Book.highest_3_rated_titles
+    @lowest_3 = Book.lowest_3_rated_titles
+    @three_ratingest_users = User.three_ratingest_users
+
   end
+
+#   select users.*, count(reviews.user_id) from users join reviews on reviews.user_id = users.id group by users.id order by
+# count;
 
 end
