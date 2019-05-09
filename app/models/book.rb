@@ -16,24 +16,43 @@ class Book < ApplicationRecord
   def self.published_sort_asc
     self.order(:published)
   end
+
   def self.published_sort_desc
     self.order(:published).reverse_order
   end
+
   def self.reviews_sort_asc
-    self.group(:id).sort_by(&:review_average)
+
+    self.joins(:reviews)
+        .select('avg(rating) as avg_rating, books.*')
+        .group('books.id')
+        .order('avg_rating')
   end
+
+  def self.highest_3_rated_titles
+    self.reviews_sort_desc.limit(3)
+  end
+
+  def self.lowest_3_rated_titles
+    self.reviews_sort_asc.limit(3)
+  end
+
+  # def 
+
   def self.reviews_sort_desc
-    self.group(:id).sort_by(&:review_average).reverse
+    self.joins(:reviews)
+        .select('avg(rating) as avg_rating, books.*')
+        .group('books.id')
+        .order('avg_rating')
+        .reverse_order
   end
 
   def review_count
     reviews.count
   end
 
-
   def review_average
-    self.reviews.average(:rating)
-    # require "pry"; binding.pry
+    reviews.average(:rating)
   end
 
 end
