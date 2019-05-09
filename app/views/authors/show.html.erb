@@ -1,0 +1,15 @@
+<h1><%= @author.name %></h1>
+
+<% @author.books.each do |book| %>
+<section id="book-<%= book.id %>">
+
+  <h2><%= book.title %></h2>
+  <p><%= book.pages %></p>
+  <p><%= book.published %></p>
+  <p><% book.authors.each do |author| %>
+  <%= author.name unless author == @author %>
+<% end %> </p>
+
+</section>
+<p></p>
+<% end %>

@@ -5,6 +5,7 @@ class Book < ApplicationRecord
 
   validates_presence_of :title, :pages, :published
 
+
   def self.page_sort_asc
     self.order(:pages)
   end
@@ -37,7 +38,7 @@ class Book < ApplicationRecord
     self.reviews_sort_asc.limit(3)
   end
 
-  # def 
+  # def
 
   def self.reviews_sort_desc
     self.joins(:reviews)
