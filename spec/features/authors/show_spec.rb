@@ -39,7 +39,6 @@ describe "as a visitor" do
     end
 
     it "displays all information for an authors books" do
-
       visit author_path(@author_2)
       save_and_open_page
       within "#book-#{@book_2.id}" do
@@ -48,15 +47,32 @@ describe "as a visitor" do
         expect(page).to have_content(@book_2.pages)
     end
       within "#book-#{@book_1.id}" do
-
         expect(page).to have_content(@book_1.title)
         expect(page).to have_content(@book_1.published)
         expect(page).to have_content(@book_1.pages)
         expect(page).to have_content(@author_1.name)
         expect(page).to_not have_content(@author_2.name)
     end
-
   end
+    it "displays each books highest review" do
+      visit author_path(@author_2)
+      within "#book-#{@book_2.id}" do
+        expect(page).to have_content(@review_4.title)
+        expect(page).to have_content(@review_4.rating)
+        expect(page).to have_content("User 1")
+    end
+      within "#book-#{@book_1.id}" do
+        expect(page).to have_content(@review_3.title)
+        expect(page).to have_content(@review_3.rating)
+        expect(page).to have_content("User 3")
+    end
+  end
+
+#   As a Visitor,
+# When I visit an author's show page,
+# Next to each book written by that author
+# I should see one of the highest rated reviews
+# (review should contain the title, score, and user name)
 
   end
 

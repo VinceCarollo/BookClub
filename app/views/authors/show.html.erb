@@ -4,9 +4,12 @@
 <section id="book-<%= book.id %>">
 
   <h2><%= book.title %></h2>
-  <p><%= book.pages %></p>
-  <p><%= book.published %></p>
-  <p><% book.authors.each do |author| %>
+  <h6>Best Review</h6>
+  <p><%= book.highest_review.title %>, Rating: <%= book.highest_review.rating %>, By:
+  <%= book.highest_review.user.name %></p>
+  <p>Pages: <%= book.pages %></p>
+  <p>Published: <%= book.published %></p>
+  <p>Other Authors: <% book.authors.each do |author| %>
   <%= author.name unless author == @author %>
 <% end %> </p>
 
