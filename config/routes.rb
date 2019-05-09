@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  get '/books', to: 'books#index'
-  resources :authors
+  resources :books, only: [:index, :show]
+  resources :authors, only: :show
 end

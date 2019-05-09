@@ -25,7 +25,8 @@ class BooksController < ApplicationController
 
   end
 
-#   select users.*, count(reviews.user_id) from users join reviews on reviews.user_id = users.id group by users.id order by
-# count;
+  def show
+    @book = Book.find(params[:id])
+  end
 
 end

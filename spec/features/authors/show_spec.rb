@@ -40,7 +40,6 @@ describe "as a visitor" do
 
     it "displays all information for an authors books" do
       visit author_path(@author_2)
-      save_and_open_page
       within "#book-#{@book_2.id}" do
         expect(page).to have_content(@book_2.title)
         expect(page).to have_content(@book_2.published)

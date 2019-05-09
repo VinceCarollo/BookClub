@@ -1,0 +1,22 @@
+<h1><%= @book.title %></h1>
+<h4>Pages: <%= @book.pages %></h4>
+<h4>Authors:</h4>
+<ul>
+  <% @book.authors.each do |author| %>
+    <li><%= author.name %></li>
+  <% end %>
+</ul>
+
+<h4>Reviews:</h4>
+<p>
+
+  <% @book.reviews.each do |review| %>
+  <ul>
+    <h5><%= review.title %></h5>
+    <li>By: <%= review.user.name %></li>
+    <li>Rating: <%= review.rating %></li>
+    <p><%= review.body %></p>
+  </ul>
+  <% end %>
+
+</p>
