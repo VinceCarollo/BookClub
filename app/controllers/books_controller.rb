@@ -29,4 +29,29 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
+  def new
+    @book = Book.new
+  end
+
+  def create
+# require "pry"; binding.pry
+  authors = params[:book][:authors].split(',').map(&:titleize)
+  title = params[:book][:title].titleize
+  require "pry"; binding.pry
+
+  Author.any?{|author|author.name == "Author 1"}
+
+
+  end
+
+  private
+
+  def book_params
+    params.require(:book).permit(:title, :ages, :authors)
+  end
+
+  def titleize
+    split(/(\W)+/).map(&:capitalize).join
+  end
+
 end
