@@ -34,13 +34,13 @@ describe "as a visitor" do
       @review_5 = Review.create!(title: 'Review 5', rating: 2, body: 'content 5', book: @book_2, user: @user_2)
       @review_6 = Review.create!(title: 'Review 6', rating: 3, body: 'content 6', book: @book_2, user: @user_3)
       @review_7 = Review.create!(title: 'Review 7', rating: 1, body: 'content 7', book: @book_3, user: @user_3)
-      @review_8 = Review.create!(title: 'Review 8', rating: 4, body: 'content 7', book: book_4, user: @user_3)
-      @review_9 = Review.create!(title: 'Review 9', rating: 5, body: 'content 7', book: book_5, user: @user_4)
+      @review_8 = Review.create!(title: 'Review 8', rating: 4, body: 'content 7', book: @book_4, user: @user_3)
+      @review_9 = Review.create!(title: 'Review 9', rating: 5, body: 'content 7', book: @book_5, user: @user_4)
     end
 
     it "displays all information for an authors books" do
 
-      visit authors_path(@author_2)
+      visit author_path(@author_2)
       within "#book-#{@book_2.id}" do
         expect(page).to have_content(@book_2.title)
         expect(page).to have_content(@book_2.publisehd)
@@ -52,6 +52,8 @@ describe "as a visitor" do
         expect(page).to have_content(@book_1.pages)
         expect(page).to have_content(@author_1.name)
     end
+
+  end
 
   end
 
