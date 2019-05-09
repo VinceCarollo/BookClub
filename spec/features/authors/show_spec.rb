@@ -43,12 +43,12 @@ describe "as a visitor" do
       visit author_path(@author_2)
       within "#book-#{@book_2.id}" do
         expect(page).to have_content(@book_2.title)
-        expect(page).to have_content(@book_2.publisehd)
+        expect(page).to have_content(@book_2.published)
         expect(page).to have_content(@book_2.pages)
     end
       within "#book-#{@book_1.id}" do
         expect(page).to have_content(@book_1.title)
-        expect(page).to have_content(@book_1.publisehd)
+        expect(page).to have_content(@book_1.published)
         expect(page).to have_content(@book_1.pages)
         expect(page).to have_content(@author_1.name)
     end
