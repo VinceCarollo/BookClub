@@ -23,6 +23,7 @@ describe "as a visitor" do
       @user_1 = User.create!(name: "User 1")
       @user_2 = User.create!(name: "User 2")
       @user_3 = User.create!(name: "User 3")
+      @user_4 = User.create!(name: "User 4")
       @review_1 = Review.create!(title: 'Review 1', rating: 2, body: 'content 1', book: @book_1, user: @user_1)
       @review_2 = Review.create!(title: 'Review 2', rating: 3, body: 'content 2', book: @book_1, user: @user_2)
       @review_3 = Review.create!(title: 'Review 3', rating: 4, body: 'content 3', book: @book_1, user: @user_3)
@@ -115,6 +116,42 @@ describe "as a visitor" do
       expect(page.all('.books')[2]).to have_content(@book_3.title)
 
     end
+
+    # it 'shows statistics' do
+    #   book_4 = Book.create!(title: 'Book 4', published: 2018, pages: 223)
+    #   book_5 = Book.create!(title: 'Book 5', published: 1955, pages: 478)
+    #   review_8 = Review.create!(title: 'Review 8', rating: 4, body: 'content 7', book: book_4, user: @user_3)
+    #   review_9 = Review.create!(title: 'Review 9', rating: 5, body: 'content 7', book: book_5, user: @user_4)
+    #
+    #   visit books_path
+    #
+    #   within '#statistics' do
+    #
+    #
+    #     within '#highest_rated' do
+    #       expect(page).to have_content("Highest Rated:")
+    #       expect(page).to have_content(book_4.title)
+    #       expect(page).to have_content(book_5.title)
+    #       expect(page).to have_content(@book_2.title)
+    #     end
+    #
+    #     within '#lowest_rated' do
+    #       expect(page).to have_content("Lowest Rated:")
+    #       expect(page).to have_content(@book_1.title)
+    #       expect(page).to have_content(@book_2.title)
+    #       expect(page).to have_content(@book_3.title)
+    #     end
+    #
+    #     within '#most_ratings' do
+    #       expect(page).to have_content("Most Reviews:")
+    #       expect(page).to have_content(@user_1.name)
+    #       expect(page).to have_content(@user_2.name)
+    #       expect(page).to have_content(@user_3.name)
+    #     end
+    #
+    #   end
+
+    # end
 
   end
 end
