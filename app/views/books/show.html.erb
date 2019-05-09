@@ -1,4 +1,17 @@
 <h1><%= @book.title %></h1>
+<section id="statistics">
+  <section id='top_three'>
+    <% @top_three_reviews.each do |review| %>
+      <p><%= review.title %>, Rating: <%= review.rating %>, By: <%= review.user.name %></p>
+    <% end %>
+  </section>
+  <section id='bottom_three'>
+    <% @bottom_three_reviews.each do |review| %>
+      <p><%= review.title %>, Rating: <%= review.rating %>, By: <%= review.user.name %></p>
+    <% end %>
+  </section>
+  <p><%= @average_rating.round(2) %></p>
+</section>
 <h4>Pages: <%= @book.pages %></h4>
 <h4>Authors:</h4>
 <ul>
@@ -6,10 +19,8 @@
     <li><%= author.name %></li>
   <% end %>
 </ul>
-
 <h4>Reviews:</h4>
 <p>
-
   <% @book.reviews.each do |review| %>
   <ul>
     <h5><%= review.title %></h5>
@@ -18,5 +29,4 @@
     <p><%= review.body %></p>
   </ul>
   <% end %>
-
 </p>
