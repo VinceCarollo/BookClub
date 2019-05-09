@@ -5,11 +5,6 @@ class Book < ApplicationRecord
 
   validates_presence_of :title, :pages, :published
 
-
-  def highest_review
-    reviews.order(:rating).last
-  end
-
   def self.page_sort_asc
     self.order(:pages)
   end
@@ -58,6 +53,10 @@ class Book < ApplicationRecord
 
   def review_average
     reviews.average(:rating)
+  end
+
+  def highest_review
+    reviews.order(:rating).last
   end
 
 end
