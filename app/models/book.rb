@@ -11,7 +11,7 @@ class Book < ApplicationRecord
   end
 
   def self.exists(title)
-    self.pluck(:title).include?(title)
+    self.select(:title).include?(title)
   end
 
   def self.page_sort_asc
