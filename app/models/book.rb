@@ -12,7 +12,7 @@ class Book < ApplicationRecord
 
   def self.exists(title)
     require "pry"; binding.pry
-    self.pluck(:title).includes?(title)
+    self.pluck(:title).include?(title)
   end
 
   def self.page_sort_asc

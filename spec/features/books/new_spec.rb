@@ -18,6 +18,7 @@ describe "as a user" do
       click_link "Create Book"
       fill_in :book_title, with: "new book"
       fill_in :book_pages, with: "88"
+      fill_in :book_published, with: "1988"
       fill_in :book_authors, with: "Tom wong,jones jones"
       click_on "Create Book"
 

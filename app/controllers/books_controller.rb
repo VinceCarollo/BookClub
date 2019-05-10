@@ -37,11 +37,17 @@ class BooksController < ApplicationController
 
   authors = params[:book][:authors].split(',').map(&:titleize)
   title = params[:book][:title].titleize
-  # require "pry"; binding.pry
+  published = params[:book][:published]
+  pages = params[:book][:pages]
+  if Book.exists(title)
+      redirect_to new_book_path
+  else
+    authors.each {|author| Author.create!(name: author) unless Author.exists(author)}
+    @book = Book.create!(title: title, pages: pages, published: published)
+    authors.each {|author| BookAuthor.create!(book: @book, author: author)}
+  end
 
-  Author.any?{|author|author.name == "Author 1"}
-
-
+  redirect_to book_path(@book)
   end
 
   private
