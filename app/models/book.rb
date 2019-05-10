@@ -5,6 +5,16 @@ class Book < ApplicationRecord
 
   validates_presence_of :title, :pages, :published
 
+
+  def highest_review
+    reviews.order(:rating).last
+  end
+
+  def self.exists(title)
+    self.select(:title).include?(title)
+  end
+
+
   def self.page_sort_asc
     self.order(:pages)
   end
