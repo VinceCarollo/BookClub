@@ -14,6 +14,7 @@ class Book < ApplicationRecord
     self.select(:title).include?(title)
   end
 
+
   def self.page_sort_asc
     self.order(:pages)
   end
@@ -62,6 +63,10 @@ class Book < ApplicationRecord
 
   def review_average
     reviews.average(:rating)
+  end
+
+  def highest_review
+    reviews.order(:rating).last
   end
 
 end
