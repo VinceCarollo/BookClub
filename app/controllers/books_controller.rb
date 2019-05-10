@@ -34,30 +34,23 @@ class BooksController < ApplicationController
   end
 
   def create
-
-  authors = params[:book][:authors].split(',').map(&:titleize)
-  title = params[:book][:title].titleize
-  published = params[:book][:published]
-  pages = params[:book][:pages]
-  if Book.exists(title)
-      redirect_to new_book_path
-  else
-    authors.each {|author| Author.create!(name: author) unless Author.exists(author)}
-    @book = Book.create!(title: title, pages: pages, published: published)
-    authors.each {|author| BookAuthor.create!(book: @book, author: Author.find_by(name: author))}
-  end
-
-  redirect_to book_path(@book)
-  end
+    authors = params[:book][:authors].split(',').map(&:titlecase)
+    if Book.exists(book_params[:title])
+        redirect_to new_book_path
+    else
+      authors.each {|author| Author.find_or_create_by(name: author)}
+      @book = Book.create!(book_params)
+      authors.each {|author| BookAuthor.create!(book: @book, author: Author.find_by(name: author))}
+    end
+    redirect_to book_path(@book)
+    end
 
   private
 
   def book_params
-    params.require(:book).permit(:title, :ages, :authors)
-  end
-
-  def titleize
-    split(/(\W)+/).map(&:capitalize).join
+    new_params = params.require(:book).permit(:title, :pages, :published)
+    new_params[:title] = new_params[:title].titlecase
+    new_params
   end
 
 end
