@@ -28,7 +28,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @top_three_reviews = @book.reviews.top_three
     @bottom_three_reviews = @book.reviews.bottom_three
-    @average_rating = @book.reviews.average_rating
+    @average_rating = @book.reviews.empty? ? 0 : @book.reviews.average_rating
   end
 
   def new
