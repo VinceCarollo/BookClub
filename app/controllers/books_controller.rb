@@ -34,10 +34,10 @@ class BooksController < ApplicationController
   end
 
   def create
-# require "pry"; binding.pry
+
   authors = params[:book][:authors].split(',').map(&:titleize)
   title = params[:book][:title].titleize
-  require "pry"; binding.pry
+  # require "pry"; binding.pry
 
   Author.any?{|author|author.name == "Author 1"}
 

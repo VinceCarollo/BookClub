@@ -10,6 +10,11 @@ class Book < ApplicationRecord
     reviews.order(:rating).last
   end
 
+  def self.exists(title)
+    require "pry"; binding.pry
+    self.pluck(:title).includes?(title)
+  end
+
   def self.page_sort_asc
     self.order(:pages)
   end
