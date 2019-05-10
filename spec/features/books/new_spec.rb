@@ -27,7 +27,9 @@ describe "as a user" do
       expect(current_path).to eq(book_path(new_book))
       expect(page).to have_content(new_book.title)
       expect(page).to have_content(new_book.pages)
-      # expect(page).to have_content(new_book.authors)
+      expect(page).to have_content(new_book.published)
+      expect(page).to have_content("Tom Wong")
+      expect(page).to have_content("Jones Jones")
     end
   end
 
