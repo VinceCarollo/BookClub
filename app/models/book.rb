@@ -11,7 +11,6 @@ class Book < ApplicationRecord
   end
 
   def self.exists(title)
-    require "pry"; binding.pry
     self.pluck(:title).include?(title)
   end
 

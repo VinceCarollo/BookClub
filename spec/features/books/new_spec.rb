@@ -25,9 +25,9 @@ describe "as a user" do
       new_book = Book.last
 
       expect(current_path).to eq(book_path(new_book))
-      expect(page).to have_content(title)
-      expect(page).to have_content(pages)
-      expect(page).to have_content(authors)
+      expect(page).to have_content(new_book.title)
+      expect(page).to have_content(new_book.pages)
+      # expect(page).to have_content(new_book.authors)
     end
   end
 

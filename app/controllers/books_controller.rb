@@ -44,7 +44,7 @@ class BooksController < ApplicationController
   else
     authors.each {|author| Author.create!(name: author) unless Author.exists(author)}
     @book = Book.create!(title: title, pages: pages, published: published)
-    authors.each {|author| BookAuthor.create!(book: @book, author: author)}
+    authors.each {|author| BookAuthor.create!(book: @book, author: Author.find_by(name: author))}
   end
 
   redirect_to book_path(@book)
