@@ -43,7 +43,7 @@ class BooksController < ApplicationController
       authors.each {|author| BookAuthor.create!(book: @book, author: Author.find_by(name: author))}
     end
     redirect_to book_path(@book)
-    end
+  end
 
   private
 
