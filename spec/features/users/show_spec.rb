@@ -25,12 +25,12 @@ RSpec.describe 'when clicking on a users name on the books show page' do
       @book_5 = Book.create!(title: 'Book 5', published: 2007, pages: 33, image_url: 'https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg')
       @user_1 = User.create!(name: "User 1")
       @user_2 = User.create!(name: "User 2")
-      @review_1 = Review.create!(title: 'Review 1 Title', rating: 2, body: 'content 1', book: @book_1, user: @user_1)
-      @review_2 = Review.create!(title: 'Review 2 Title', rating: 3, body: 'content 2', book: @book_2, user: @user_1)
-      @review_3 = Review.create!(title: 'Review 3 Title', rating: 4, body: 'content 3', book: @book_3, user: @user_1)
-      @review_4 = Review.create!(title: 'Review 4 Title', rating: 5, body: 'content 4', book: @book_4, user: @user_1)
-      @review_5 = Review.create!(title: 'Review 5 Title', rating: 2, body: 'content 5', book: @book_5, user: @user_1)
-      @review_6 = Review.create!(title: 'Review 6 Title', rating: 2, body: 'content 6', book: @book_1, user: @user_2)
+      @review_1 = Review.create!(title: 'Review 1 Title', rating: 2, body: 'content 1', book: @book_1, user: @user_1, created_at: Time.new(2001,2,7).to_date)
+      @review_2 = Review.create!(title: 'Review 2 Title', rating: 3, body: 'content 2', book: @book_2, user: @user_1, created_at: Time.new(2003,3,3).to_date)
+      @review_3 = Review.create!(title: 'Review 3 Title', rating: 4, body: 'content 3', book: @book_3, user: @user_1, created_at: Time.new(2019,2,3).to_date)
+      @review_4 = Review.create!(title: 'Review 4 Title', rating: 5, body: 'content 4', book: @book_4, user: @user_1, created_at: Time.new(1995,12,3).to_date)
+      @review_5 = Review.create!(title: 'Review 5 Title', rating: 2, body: 'content 5', book: @book_5, user: @user_1, created_at: Time.new(1995,3,30).to_date)
+      @review_6 = Review.create!(title: 'Review 6 Title', rating: 2, body: 'content 6', book: @book_1, user: @user_2, created_at: Time.new(1966,6,3).to_date)
     end
 
     it 'shows all reviews made by that user' do
@@ -97,5 +97,26 @@ RSpec.describe 'when clicking on a users name on the books show page' do
 
     end
 
+    it 'can sort all reviews' do
+      visit user_path(@user_1)
+
+      click_link "Sort By Newest"
+
+      expect(page.all('.reviews')[0]).to have_content(@review_3.title)
+      expect(page.all('.reviews')[1]).to have_content(@review_2.title)
+      expect(page.all('.reviews')[2]).to have_content(@review_1.title)
+      expect(page.all('.reviews')[3]).to have_content(@review_4.title)
+      expect(page.all('.reviews')[4]).to have_content(@review_5.title)
+
+
+      click_link "Sort By Oldest"
+
+      expect(page.all('.reviews')[0]).to have_content(@review_5.title)
+      expect(page.all('.reviews')[1]).to have_content(@review_4.title)
+      expect(page.all('.reviews')[2]).to have_content(@review_1.title)
+      expect(page.all('.reviews')[3]).to have_content(@review_2.title)
+      expect(page.all('.reviews')[4]).to have_content(@review_3.title)
+
+    end
   end
 end
