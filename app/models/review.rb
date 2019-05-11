@@ -22,7 +22,8 @@ class Review < ApplicationRecord
     self.average(:rating)
   end
 
-  def self.find_all_user_reviews(user)
+  def self.find_user_reviews(user)
     self.where(user_id: user.id)
   end
+
 end
