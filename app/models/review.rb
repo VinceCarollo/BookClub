@@ -6,6 +6,10 @@ class Review < ApplicationRecord
 
   validates_presence_of :title, :body, :rating
 
+  def find_book(book_id)
+    Book.find(book_id)
+  end
+
   def self.top_three
     self.order(:rating).reverse_order.limit(3)
   end
@@ -17,4 +21,9 @@ class Review < ApplicationRecord
   def self.average_rating
     self.average(:rating)
   end
+
+  def self.find_user_reviews(user)
+    self.where(user_id: user.id)
+  end
+
 end

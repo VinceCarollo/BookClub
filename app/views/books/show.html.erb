@@ -31,7 +31,7 @@
   <% @book.reviews.each do |review| %>
   <ul>
     <h5><%= review.title %></h5>
-    <li>By: <%= review.user.name %></li>
+    <li>By: <%= link_to review.user.name, user_path(review.user) %></li>
     <li>Rating: <%= review.rating %></li>
     <p><%= review.body %></p>
   </ul>

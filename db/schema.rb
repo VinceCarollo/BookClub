@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20190507173729) do
     t.string "title"
     t.integer "published"
     t.integer "pages"
+    t.string "image_url"
   end
 
   create_table "reviews", force: :cascade do |t|

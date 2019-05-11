@@ -90,21 +90,6 @@ RSpec.describe 'When a visitor goes to a books show page' do
 
   end
 
-#  As a Visitor,
-# When I visit a book's show page
-# I see a link to add a new review for this book.
-# When I click on this link, I am taken to a new review path.
-# On this new page, I see a form where I can enter:
-# - a review title
-# - my username as a string
-# - a numeric rating that can only be a number from 1 to 5
-# - some text for the review itself
-# When the form is submitted, I should return to that book's
-# show page and I should see my review text.
-#
-# User names should be converted to Title Case before saving.
-# User names should be unique for that book (user can only give one review per book).
-
   describe 'there is a link to create a new review' do
     it 'creates a new review for that book' do
       visit book_path(@book_1)
@@ -121,7 +106,7 @@ RSpec.describe 'When a visitor goes to a books show page' do
       fill_in :review_username, with: "Vince"
 
       click_button "Create Review"
-      
+
       expect(current_path).to eq(book_path(@book_1))
 
       expect(page).to have_content(Review.last.title)
