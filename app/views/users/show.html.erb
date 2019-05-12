@@ -3,7 +3,7 @@
 <%= link_to "Sort By Newest", :controller => "users", :action => "show" , :sort => "newest" %><br>
 <%= link_to "Sort By Oldest", :controller => "users", :action => "show" , :sort => "oldest" %>
 <% @user_reviews.each do |review| %>
-<% book = review.find_book(review.book_id) %>
+  <% book = review.find_book(review.book_id) %>
   <section class='reviews' id="review-<%= review.id %>">
     <h3><%= link_to book.title, book_path(book) %></h3>
     <h4><%= review.title %></h4>
