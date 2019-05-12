@@ -11,6 +11,13 @@ class ReviewsController < ApplicationController
     validation(new_review, book)
   end
 
+  def destroy
+      @review = Review.find(params[:id])
+      user = @review.user_id
+      @review.destroy
+      redirect_to(user_path(user))
+    end
+
   private
 
   def validation(review, book)

@@ -104,5 +104,22 @@ RSpec.describe 'when clicking on a users name on the books show page' do
       expect(page.all('.reviews')[4]).to have_content(@review_3.title)
 
     end
+
+#     As a Visitor,
+# When I visit a user's show page,
+# I see a link next to each review to delete the review.
+# When I delete a review I am returned to the user's show page
+# Then I should no longer see that review.
+
+  it "can delete a review" do
+    visit user_path(@user_1)
+    click_link "Delete Review #{@review_1.id}"
+    visit user_path(@user_1)
+    expect(page).to_not have_content(@review_1.title)
+    expect(page).to_not have_content(@review_1.body)
+    expect(current_path).to eq(user_path(@user_1))
+  end
+
+
   end
 end
