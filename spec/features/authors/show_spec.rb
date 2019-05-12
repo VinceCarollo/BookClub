@@ -45,7 +45,7 @@ describe "as a visitor" do
         expect(page).to have_content(@book_2.published)
         expect(page).to have_content(@book_2.pages)
         find "img[src*='https://www.csparks.com/Bookbinding/001%20-%20A%20small%20book.jpg']"
-    end
+      end
       within "#book-#{@book_1.id}" do
         expect(page).to have_content(@book_1.title)
         expect(page).to have_content(@book_1.published)
@@ -53,28 +53,21 @@ describe "as a visitor" do
         expect(page).to have_content(@author_1.name)
         expect(page).to_not have_content(@author_2.name)
         find "img[src*='https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg']"
+      end
     end
-  end
     it "displays each books highest review" do
       visit author_path(@author_2)
+
       within "#book-#{@book_2.id}" do
         expect(page).to have_content(@review_4.title)
         expect(page).to have_content(@review_4.rating)
         expect(page).to have_content("User 1")
-    end
+      end
       within "#book-#{@book_1.id}" do
         expect(page).to have_content(@review_3.title)
         expect(page).to have_content(@review_3.rating)
         expect(page).to have_content("User 3")
+      end
     end
   end
-
-#   As a Visitor,
-# When I visit an author's show page,
-# Next to each book written by that author
-# I should see one of the highest rated reviews
-# (review should contain the title, score, and user name)
-
-  end
-
 end
