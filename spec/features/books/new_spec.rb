@@ -20,7 +20,7 @@ describe "as a user" do
       fill_in :book_authors, with: "Tom wong,jones jones"
       fill_in :book_image_url, with: 'https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg'
       click_on "Create Book"
-
+save_and_open_page
       new_book = Book.last
 
       expect(current_path).to eq(book_path(new_book))
