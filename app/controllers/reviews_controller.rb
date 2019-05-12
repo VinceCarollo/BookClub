@@ -13,9 +13,9 @@ class ReviewsController < ApplicationController
 
   def destroy
       @review = Review.find(params[:id])
+      user = @review.user_id
       @review.destroy
-      session[:return_to] ||= request.referer
-      redirect_to session.delete(:return_to)
+      redirect_to(user_path(user))
     end
 
   private
