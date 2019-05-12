@@ -4,11 +4,11 @@ require 'rails_helper'
 RSpec.describe 'When a visitor goes to a books show page' do
 
   before :each do
-    @book_1 = Book.create!(title: 'Book 1', published: 1967, pages: 155)
-    @book_2 = Book.create!(title: 'Book 2', published: 1965, pages: 245)
-    @book_3 = Book.create!(title: 'Book 3', published: 1975, pages: 33)
-    @book_4 = Book.create!(title: 'Book 4', published: 2018, pages: 223)
-    @book_5 = Book.create!(title: 'Book 5', published: 1955, pages: 478)
+    @book_1 = Book.create!(title: 'Book 1', published: 1967, pages: 155, image_url: 'https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg')
+    @book_2 = Book.create!(title: 'Book 2', published: 1965, pages: 245, image_url: 'https://www.csparks.com/Bookbinding/001%20-%20A%20small%20book.jpg')
+    @book_3 = Book.create!(title: 'Book 3', published: 1975, pages: 33, image_url: 'https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg')
+    @book_4 = Book.create!(title: 'Book 4', published: 2018, pages: 223, image_url: 'https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg')
+    @book_5 = Book.create!(title: 'Book 5', published: 1955, pages: 478, image_url: 'https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg')
     @author_1 = Author.create!(name: 'Author 1')
     @author_2 = Author.create!(name: 'Author 2')
     @author_3 = Author.create!(name: 'Author 3')
@@ -42,7 +42,16 @@ RSpec.describe 'When a visitor goes to a books show page' do
     end
 
     expect(page).to have_content(@book_1.pages)
+    # expect(page).to have_css("img[src*=#{https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg}]")
+    # require "pry"; binding.pry
+      # expect(page).to have_css("img[src*='https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg']")
+      find "img[src*='https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg']"
+
+      visit book_path(@book_2)
+      save_and_open_page
+      find "img[src*='https://www.csparks.com/Bookbinding/001%20-%20A%20small%20book.jpg']"
   end
+
 
   it 'shows all of that books reviews' do
     visit book_path(@book_1)
