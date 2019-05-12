@@ -10,9 +10,9 @@ describe "as a visitor" do
   describe 'I visit book index page' do
 
     before :each do
-      @book_1 = Book.create!(title: 'Book 1', published: 1967, pages: 155)
-      @book_2 = Book.create!(title: 'Book 2', published: 1965, pages: 245)
-      @book_3 = Book.create!(title: 'Book 3', published: 1975, pages: 33)
+      @book_1 = Book.create!(title: 'Book 1', published: 1967, pages: 155, image_url: 'https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg')
+      @book_2 = Book.create!(title: 'Book 2', published: 1965, pages: 245, image_url: 'https://www.csparks.com/Bookbinding/001%20-%20A%20small%20book.jpg')
+      @book_3 = Book.create!(title: 'Book 3', published: 1975, pages: 33, image_url: 'https://thumbs-prod.si-cdn.com/ufPRE9RHUDHqQdOsLvYHhJAxy1k=/fit-in/1600x0/https://public-media.si-cdn.com/filer/91/91/91910c23-cae4-46f8-b7c9-e2b22b8c1710/lostbook.jpg')
       @author_1 = Author.create!(name: 'Author 1')
       @author_2 = Author.create!(name: 'Author 2')
       @author_3 = Author.create!(name: 'Author 3')
@@ -37,26 +37,29 @@ describe "as a visitor" do
 
       visit books_path
 
-        within("#book-#{@book_1.id}")  do
-          expect(page).to have_content(@book_1.title)
-          expect(page).to have_content(@author_1.name)
-          expect(page).to have_content(@author_2.name)
-          expect(page).to have_content("Page Count: #{@book_1.pages}")
-          expect(page).to have_content("Published In: #{@book_1.published}")
+      within("#book-#{@book_1.id}")  do
+        expect(page).to have_content(@book_1.title)
+        expect(page).to have_content(@author_1.name)
+        expect(page).to have_content(@author_2.name)
+        expect(page).to have_content("Page Count: #{@book_1.pages}")
+        expect(page).to have_content("Published In: #{@book_1.published}")
+        find "img[src='#{@book_1.image_url}']"
       end
 
-        within("#book-#{@book_2.id}")  do
-          expect(page).to have_content(@book_2.title)
-          expect(page).to have_content(@author_2.name)
-          expect(page).to have_content("Page Count: #{@book_2.pages}")
-          expect(page).to have_content("Published In: #{@book_2.published}")
+      within("#book-#{@book_2.id}")  do
+        expect(page).to have_content(@book_2.title)
+        expect(page).to have_content(@author_2.name)
+        expect(page).to have_content("Page Count: #{@book_2.pages}")
+        expect(page).to have_content("Published In: #{@book_2.published}")
+        find "img[src='#{@book_2.image_url}']"
       end
 
-        within("#book-#{@book_3.id}")  do
-          expect(page).to have_content(@book_3.title)
-          expect(page).to have_content(@author_3.name)
-          expect(page).to have_content("Page Count: #{@book_3.pages}")
-          expect(page).to have_content("Published In: #{@book_3.published}")
+      within("#book-#{@book_3.id}")  do
+        expect(page).to have_content(@book_3.title)
+        expect(page).to have_content(@author_3.name)
+        expect(page).to have_content("Page Count: #{@book_3.pages}")
+        expect(page).to have_content("Published In: #{@book_3.published}")
+        find "img[src='#{@book_3.image_url}']"
       end
 
     end
@@ -65,7 +68,6 @@ describe "as a visitor" do
     it 'displays average book rating' do
 
       visit books_path
-      # Book.first.review_average
 
       within("#book-#{@book_1.id}")  do
         expect(page).to have_content("Average Review: 3.0")
