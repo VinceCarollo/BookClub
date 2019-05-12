@@ -134,7 +134,7 @@ describe "as a visitor" do
             expect(page).to have_content(book_5.review_average)
             expect(page).to have_content(book_5.title)
           end
-        end
+      end
 
         within '#lowest_rated' do
           within "#book-#{@book_1.id}-lowest-stats" do
@@ -157,17 +157,18 @@ describe "as a visitor" do
             expect(page).to have_content(@user_1.name)
             expect(page).to have_content(@user_1.review_count)
           end
-        within  "#ratings-#{@user_2.id}" do
-          expect(page).to have_content(@user_2.name)
-          expect(page).to have_content(@user_2.review_count)
+          within  "#ratings-#{@user_2.id}" do
+            expect(page).to have_content(@user_2.name)
+            expect(page).to have_content(@user_2.review_count)
+          end
+          within  "#ratings-#{@user_3.id}" do
+            expect(page).to have_content(@user_3.name)
+            expect(page).to have_content(@user_3.review_count)
+          end
         end
-        within  "#ratings-#{@user_3.id}" do
-          expect(page).to have_content(@user_3.name)
-          expect(page).to have_content(@user_3.review_count)
-        end
-      end
 
+      end
     end
-end
+
   end
 end
