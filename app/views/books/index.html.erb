@@ -23,7 +23,7 @@
 <% @books.each do |book|  %>
  <section class='books' id="book-<%= book.id %>">
    <h2><%= book.title %></h2>
-   <img class="books_page_book_image" src="<%= book.image_url %>">
+   <img class="books_small" src="<%= book.image_url %>">
    <p>Author(s): <% book.authors.each do |author| %>
      <%= author.name %>
      <% end %>
