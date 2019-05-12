@@ -115,6 +115,43 @@ RSpec.describe 'When a visitor goes to a books show page' do
       expect(page).to have_content(User.last.name)
       expect(User.last.name).to eq("Vince")
     end
+
+    it 'cant create review if rating isnt numeric from 1 to 5' do
+      visit book_path(@book_1)
+
+      click_link "New Review"
+
+      expect(current_path).to eq(new_book_review_path(@book_1))
+
+      expect(page).to have_content("Create Review for #{@book_1.title}")
+
+      fill_in :review_title, with: "New Review Title"
+      fill_in :review_rating, with: 7
+      fill_in :review_body, with: "New Review Body"
+      fill_in :review_username, with: "Vince"
+
+      click_button "Create Review"
+
+      expect(Review.last).to eq(@review_9)
+      expect(User.last).to eq(@user_4)
+
+
+      expect(current_path).to eq(new_book_review_path(@book_1))
+
+      expect(page).to have_content("Create Review for #{@book_1.title}")
+
+      fill_in :review_title, with: "New Review Title"
+      fill_in :review_rating, with: "something"
+      fill_in :review_body, with: "New Review Body"
+      fill_in :review_username, with: "Vince"
+
+      click_button "Create Review"
+
+      expect(Review.last).to eq(@review_9)
+      expect(User.last).to eq(@user_4)
+
+      expect(current_path).to eq(new_book_review_path(@book_1))
+    end
   end
 
 end
