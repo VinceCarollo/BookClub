@@ -65,11 +65,11 @@ describe "as a visitor" do
       visit books_path
 
       within("#book-#{@book_1.id}")  do
-        expect(page).to have_content("Average Review: 3.0")
+        expect(page).to have_content("Average Rating: 3.0")
         expect(page).to have_content("Total Reviews: 3")
       end
       within("#book-#{@book_2.id}")  do
-        expect(page).to have_content("Average Review: 3.33")
+        expect(page).to have_content("Average Rating: 3.33")
         expect(page).to have_content("Total Reviews: 3")
       end
     end
