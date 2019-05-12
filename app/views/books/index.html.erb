@@ -7,6 +7,7 @@
 <a href="/books/new">Create Book</a>
 
 <section id='statistics'>
+  <h3>Statistics</h3>
   <p id='highest_rated'>Highest Rated: <% @highest_3.each do |book| %>
   <%= book.title %>
 <% end %></p>
@@ -21,8 +22,9 @@
 
 <% @books.each do |book|  %>
  <section class='books' id="book-<%= book.id %>">
-   <p>Title: <%= book.title %></p>
-   <p>Author: <% book.authors.each do |author| %>
+   <h2><%= book.title %></h2>
+   <img class="books_page_book_image" src="<%= book.image_url %>">
+   <p>Author(s): <% book.authors.each do |author| %>
      <%= author.name %>
      <% end %>
 
