@@ -14,5 +14,6 @@ class User < ApplicationRecord
 
   def review_count
     reviews.count
+  end
 
 end
