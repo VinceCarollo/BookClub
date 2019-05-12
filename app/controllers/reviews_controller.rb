@@ -14,9 +14,15 @@ class ReviewsController < ApplicationController
   private
 
   def validation(review, book)
+    users = []
+    book.reviews.each{|review| users << review.user_id}
+    user = User.find_by(name: params[:review][:username])
+
+    if !user.nil?
+      redirect_to new_book_review_path(book) and return if users.include?(user.id)
+    end
+
     if (review.rating > 5 || review.rating <= 0)
-      redirect_to new_book_review_path(book)
-    elsif User.find_by(name: params[:review][:username])
       redirect_to new_book_review_path(book)
     else
       review.user = User.find_or_create_by(name: params[:review][:username])
