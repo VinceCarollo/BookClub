@@ -36,48 +36,38 @@ describe "as a visitor" do
     it "displays book informtaion" do
 
       visit books_path
-
         within("#book-#{@book_1.id}")  do
           expect(page).to have_content(@book_1.title)
           expect(page).to have_content(@author_1.name)
           expect(page).to have_content(@author_2.name)
           expect(page).to have_content("Page Count: #{@book_1.pages}")
           expect(page).to have_content("Published In: #{@book_1.published}")
-      end
-
+        end
         within("#book-#{@book_2.id}")  do
           expect(page).to have_content(@book_2.title)
           expect(page).to have_content(@author_2.name)
           expect(page).to have_content("Page Count: #{@book_2.pages}")
           expect(page).to have_content("Published In: #{@book_2.published}")
-      end
-
+        end
         within("#book-#{@book_3.id}")  do
           expect(page).to have_content(@book_3.title)
           expect(page).to have_content(@author_3.name)
           expect(page).to have_content("Page Count: #{@book_3.pages}")
           expect(page).to have_content("Published In: #{@book_3.published}")
-      end
-
+        end
     end
 
 
     it 'displays average book rating' do
-
       visit books_path
-
       within("#book-#{@book_1.id}")  do
         expect(page).to have_content("Average Review: 3.0")
         expect(page).to have_content("Total Reviews: 3")
       end
-
       within("#book-#{@book_2.id}")  do
-
         expect(page).to have_content("Average Review: 3.33")
         expect(page).to have_content("Total Reviews: 3")
       end
-
-
     end
 
     it 'sorts all books' do
@@ -123,38 +113,57 @@ describe "as a visitor" do
       book_5 = Book.create!(title: 'Book 5', published: 1955, pages: 478)
       review_8 = Review.create!(title: 'Review 8', rating: 4, body: 'content 7', book: book_4, user: @user_3)
       review_9 = Review.create!(title: 'Review 9', rating: 5, body: 'content 7', book: book_5, user: @user_4)
-
-
       visit books_path
 
       within '#statistics' do
-
-
         within '#highest_rated' do
           expect(page).to have_content("Highest Rated:")
-          expect(page).to have_content(book_4.title)
-          expect(page).to have_content(book_5.title)
-          expect(page).to have_content(@book_2.title)
+          within "#book-#{book_4.id}-highest-stats" do
+            expect(page).to have_content(book_4.review_average)
+            expect(page).to have_content(book_4.title)
+          end
+          within "#book-#{@book_2.id}-highest-stats" do
+            expect(page).to have_content(@book_2.review_average)
+            expect(page).to have_content(@book_2.title)
+          end
+          within "#book-#{book_5.id}-highest-stats" do
+            expect(page).to have_content(book_5.review_average)
+            expect(page).to have_content(book_5.title)
+          end
         end
 
         within '#lowest_rated' do
-          expect(page).to have_content("Lowest Rated:")
-          expect(page).to have_content(@book_1.title)
-          expect(page).to have_content(@book_2.title)
-          expect(page).to have_content(@book_3.title)
+          within "#book-#{@book_1.id}-lowest-stats" do
+            expect(page).to have_content(@book_1.review_average)
+            expect(page).to have_content(@book_1.title)
+          end
+          within "#book-#{@book_2.id}-lowest-stats" do
+            expect(page).to have_content(@book_2.review_average)
+            expect(page).to have_content(@book_2.title)
+          end
+          within "#book-#{@book_3.id}-lowest-stats" do
+            expect(page).to have_content(@book_3.review_average)
+            expect(page).to have_content(@book_3.title)
+          end
         end
 
         within '#most_ratings' do
           expect(page).to have_content("Most Reviews:")
-          expect(page).to have_content(@user_1.name)
-          expect(page).to have_content(@user_1.name)
+          within  "#ratings-#{@user_1.id}" do
+            expect(page).to have_content(@user_1.name)
+            expect(page).to have_content(@user_1.review_count)
+          end
+        within  "#ratings-#{@user_2.id}" do
           expect(page).to have_content(@user_2.name)
-          expect(page).to have_content(@user_3.name)
+          expect(page).to have_content(@user_2.review_count)
         end
-
+        within  "#ratings-#{@user_3.id}" do
+          expect(page).to have_content(@user_3.name)
+          expect(page).to have_content(@user_3.review_count)
+        end
       end
 
     end
-
+end
   end
 end
