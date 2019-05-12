@@ -113,7 +113,8 @@ RSpec.describe 'when clicking on a users name on the books show page' do
 
   it "can delete a review" do
     visit user_path(@user_1)
-    click_link "Delete Review #{@review_1}"
+    click_link "Delete Review #{@review_1.id}"
+    visit user_path(@user_1)
     expect(page).to_not have_content(@review_1.title)
     expect(page).to_not have_content(@review_1.body)
     expect(current_path).to eq(user_path(@user_1))

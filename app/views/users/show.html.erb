@@ -10,5 +10,6 @@
     <p><%= review.body %></p>
     <p>Rating: <%= review.rating %></p>
     <img src="<%= book.image_url %>" >
+    <%= link_to "Delete Review #{review.id}", review_path(review), method: :delete, data: {confirm: "Really delete this review?"} %>
   </section>
 <% end %>

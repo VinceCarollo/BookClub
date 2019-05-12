@@ -11,6 +11,11 @@ class ReviewsController < ApplicationController
     validation(new_review, book)
   end
 
+  def destroy
+      @review = Review.find(params[:id])
+      @review.destroy
+    end
+
   private
 
   def validation(review, book)
