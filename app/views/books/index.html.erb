@@ -12,7 +12,6 @@
   <h3>Statistics</h3>
   <p id='highest_rated'>Highest Rated: <% @highest_3.each do |book| %>
     <section id="book-<%=book.id%>-highest-stats">
-
   <p><%= link_to book.title, book_path(book) %></p>
   <p><%= book.review_average %></p>
     </section>

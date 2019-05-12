@@ -179,6 +179,21 @@ RSpec.describe 'When a visitor goes to a books show page' do
       click_button "Create Review"
 
       expect(Review.last).to eq(review_10)
+
+      visit book_path(@book_4)
+
+      click_link "New Review"
+
+      fill_in :review_title, with: "New Review Title"
+      fill_in :review_rating, with: 5
+      fill_in :review_body, with: "New Review Body"
+      fill_in :review_username, with: "Vince"
+
+      click_button "Create Review"
+
+      expect(page).to have_content(Review.last.title)
+      expect(page).to have_content(Review.last.rating)
+      expect(page).to have_content(Review.last.body)
     end
   end
 
