@@ -13,13 +13,13 @@
   <p id='highest_rated'>Highest Rated: <% @highest_3.each do |book| %>
     <section id="book-<%=book.id%>-highest-stats">
 
-  <p><%= book.title %></p>
+  <p><%= link_to book.title, book_path(book) %></p>
   <p><%= book.review_average %></p>
     </section>
 <% end %>
   <p id='lowest_rated'> Lowest Rated:  <% @lowest_3.each do |book| %>
     <section id="book-<%=book.id%>-lowest-stats">
-  <p><%= book.title %></p>
+  <p><%= link_to book.title, book_path(book) %></p>
   <p><%= book.review_average %></p>
   </section>
 <% end %>

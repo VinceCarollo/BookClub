@@ -26,15 +26,38 @@ describe 'when clicking on a books name anywhere' do
     @review_7 = Review.create!(title: 'Review 7', rating: 1, body: 'content 7', book: @book_3, user: @user_3)
   end
 
-  it "links to a book show page from books index" do
+  it "links to a book show page from books index lowest stats" do
     visit books_path
-    click_link "#{@book_1.title}"
+    within  "#lowest_rated" do
+      click_link "#{@book_1.title}"
+    end
     expect(current_path).to eq(book_path(@book_1))
     click_link "Books"
-    click_link "#{@book_2.title}"
+    within  "#lowest_rated" do
+      click_link "#{@book_2.title}"
+    end
     expect(current_path).to eq(book_path(@book_2))
     click_link "Books"
-    click_link "#{@book_3.title}"
+    within  "#lowest_rated" do
+      click_link "#{@book_3.title}"
+    end
+    expect(current_path).to eq(book_path(@book_3))
+  end
+  it "links to a book show page from books index highest stats" do
+    visit books_path
+    within  "#highest_rated" do
+      click_link "#{@book_1.title}"
+    end
+    expect(current_path).to eq(book_path(@book_1))
+    click_link "Books"
+    within  "#highest_rated" do
+      click_link "#{@book_2.title}"
+    end
+    expect(current_path).to eq(book_path(@book_2))
+    click_link "Books"
+    within  "#highest_rated" do
+      click_link "#{@book_3.title}"
+    end
     expect(current_path).to eq(book_path(@book_3))
   end
 
