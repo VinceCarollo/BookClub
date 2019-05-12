@@ -23,6 +23,8 @@
 <% @books.each do |book|  %>
  <section class='books' id="book-<%= book.id %>">
    <h2><%= book.title %></h2>
+   <p>Average Rating: <%=
+     (book.review_average.to_f.round(2)) %></p>
    <img class="books_small" src="<%= book.image_url %>">
    <p>Author(s): <% book.authors.each do |author| %>
      <%= author.name %>
@@ -31,8 +33,6 @@
      </p>
    <p>Page Count: <%= book.pages %></p>
    <p>Published In: <%= book.published %></p>
-   <p>Average Review: <%=
-      (book.review_average.to_f.round(2)) %></p>
    <p>Total Reviews: <%= book.review_count %></p>
    <% end %>
  </section>
