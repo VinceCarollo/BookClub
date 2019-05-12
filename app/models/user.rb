@@ -11,4 +11,8 @@ class User < ApplicationRecord
     .order('count desc')
     .limit(3)
   end
+
+  def review_count
+    reviews.count
+
 end

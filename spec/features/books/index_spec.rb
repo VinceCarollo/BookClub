@@ -148,6 +148,7 @@ describe "as a visitor" do
         within '#most_ratings' do
           expect(page).to have_content("Most Reviews:")
           expect(page).to have_content(@user_1.name)
+          expect(page).to have_content(@user_1.name)
           expect(page).to have_content(@user_2.name)
           expect(page).to have_content(@user_3.name)
         end

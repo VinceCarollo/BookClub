@@ -14,7 +14,8 @@
   <%= book.title %>
 <% end %> </p>
   <p id='most_ratings'>Most Reviews: <% @three_ratingest_users.each do |user| %>
-  <%= user.name %>
+  <%= user.name %>,
+  <%= user.reviews.count %> Reviews
 <% end %> </p>
 
 </section>
