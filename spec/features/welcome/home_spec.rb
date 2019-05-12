@@ -4,7 +4,6 @@ describe "as a visitor" do
   describe "when I visit the home page" do
     it "says welcome" do
       visit '/'
-      save_and_open_page
       expect(page).to have_content("Welcome")
     end
 
