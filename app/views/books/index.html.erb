@@ -9,14 +9,24 @@
 <section id='statistics'>
   <h3>Statistics</h3>
   <p id='highest_rated'>Highest Rated: <% @highest_3.each do |book| %>
-  <%= book.title %>
-<% end %></p>
+    <section id="book-<%=book.id%>-highest-stats">
+
+  <p><%= book.title %></p>
+  <p><%= book.review_average %></p>
+    </section>
+<% end %>
   <p id='lowest_rated'> Lowest Rated:  <% @lowest_3.each do |book| %>
-  <%= book.title %>
-<% end %> </p>
+    <section id="book-<%=book.id%>-lowest-stats">
+  <p><%= book.title %></p>
+  <p><%= book.review_average %></p>
+  </section>
+<% end %>
   <p id='most_ratings'>Most Reviews: <% @three_ratingest_users.each do |user| %>
-  <%= user.name %>
-<% end %> </p>
+    <section id="ratings-<%=user.id%>">
+  <p><%= user.name %>,
+  <%= user.reviews.count %> Reviews</p>
+  </section>
+<% end %>
 
 </section>
 
