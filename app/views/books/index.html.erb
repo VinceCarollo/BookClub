@@ -31,7 +31,7 @@
 <% end %>
 
 </section>
-
+  <section class="main-area">
 <% @books.each do |book|  %>
  <section class='books' id="book-<%= book.id %>">
      <h2><%= link_to book.title, book_path(book) %></h2>
@@ -41,10 +41,10 @@
    <p>Author(s): <% book.authors.each do |author| %>
      <%= author.name %>
      <% end %>
-
      </p>
    <p>Page Count: <%= book.pages %></p>
    <p>Published In: <%= book.published %></p>
    <p>Total Reviews: <%= book.review_count %></p>
    <% end %>
+ </section>
  </section>
