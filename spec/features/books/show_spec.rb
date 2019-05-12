@@ -158,6 +158,28 @@ RSpec.describe 'When a visitor goes to a books show page' do
 
       expect(current_path).to eq(new_book_review_path(@book_1))
     end
+
+    it 'cant create a review if user has left one for that book' do
+      user_5 = User.create!(name: 'Vince')
+      review_10 = Review.create!(title: 'Review 10', rating: 5, body: 'content 10', book: @book_5, user: user_5)
+
+      visit book_path(@book_5)
+
+      click_link "New Review"
+
+      expect(current_path).to eq(new_book_review_path(@book_5))
+
+      expect(page).to have_content("Create Review for #{@book_5.title}")
+
+      fill_in :review_title, with: "New Review Title"
+      fill_in :review_rating, with: 5
+      fill_in :review_body, with: "New Review Body"
+      fill_in :review_username, with: "Vince"
+
+      click_button "Create Review"
+
+      expect(Review.last).to eq(review_10)
+    end
   end
 
 end
