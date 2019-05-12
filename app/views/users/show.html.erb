@@ -5,7 +5,7 @@
 <% @user_reviews.each do |review| %>
 <% book = review.find_book(review.book_id) %>
   <section class='reviews' id="review-<%= review.id %>">
-    <h3>Reviewed: <%= book.title %></h3>
+    <h3><%= link_to book.title, book_path(book) %></h3>
     <h4><%= review.title %></h4>
     <p>Date: <%= review.created_at.month %>/<%= review.created_at.day %>/<%= review.created_at.year %></p>
     <p><%= review.body %></p>

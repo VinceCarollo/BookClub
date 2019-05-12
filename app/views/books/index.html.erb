@@ -12,14 +12,13 @@
   <h3>Statistics</h3>
   <p id='highest_rated'>Highest Rated: <% @highest_3.each do |book| %>
     <section id="book-<%=book.id%>-highest-stats">
-
-  <p><%= book.title %></p>
+  <p><%= link_to book.title, book_path(book) %></p>
   <p><%= book.review_average %></p>
     </section>
 <% end %>
   <p id='lowest_rated'> Lowest Rated:  <% @lowest_3.each do |book| %>
     <section id="book-<%=book.id%>-lowest-stats">
-  <p><%= book.title %></p>
+  <p><%= link_to book.title, book_path(book) %></p>
   <p><%= book.review_average %></p>
   </section>
 <% end %>
@@ -31,20 +30,20 @@
 <% end %>
 
 </section>
-
+  <section class="main-area">
 <% @books.each do |book|  %>
  <section class='books' id="book-<%= book.id %>">
-   <h2><%= book.title %></h2>
+     <h2><%= link_to book.title, book_path(book) %></h2>
    <p>Average Rating: <%=
      (book.review_average.to_f.round(2)) %></p>
    <img class="books_small" src="<%= book.image_url %>">
    <p>Author(s): <% book.authors.each do |author| %>
      <%= author.name %>
      <% end %>
-
      </p>
    <p>Page Count: <%= book.pages %></p>
    <p>Published In: <%= book.published %></p>
    <p>Total Reviews: <%= book.review_count %></p>
    <% end %>
+ </section>
  </section>
