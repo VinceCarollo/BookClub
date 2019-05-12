@@ -7,6 +7,7 @@
   <h6>Best Review</h6>
   <p><%= book.highest_review.title %>, Rating: <%= book.highest_review.rating %>, By:
   <%= book.highest_review.user.name %></p>
+  <img src=<%= book.image_url %> >
   <p>Pages: <%= book.pages %></p>
   <p>Published: <%= book.published %></p>
   <p>Other Authors: <% book.authors.each do |author| %>

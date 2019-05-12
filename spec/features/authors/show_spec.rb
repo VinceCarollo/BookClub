@@ -11,9 +11,9 @@ describe "as a visitor" do
   describe "when I visit an authors show page" do
 
     before :each do
-      @book_1 = Book.create!(title: 'Book 1', published: 1967, pages: 155)
-      @book_2 = Book.create!(title: 'Book 2', published: 1965, pages: 245)
-      @book_3 = Book.create!(title: 'Book 3', published: 1975, pages: 33)
+      @book_1 = Book.create!(title: 'Book 1', published: 1967, pages: 155, image_url: 'https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg')
+      @book_2 = Book.create!(title: 'Book 2', published: 1965, pages: 245, image_url: 'https://www.csparks.com/Bookbinding/001%20-%20A%20small%20book.jpg')
+      @book_3 = Book.create!(title: 'Book 3', published: 1975, pages: 33, image_url: 'https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg')
       @book_4 = Book.create!(title: 'Book 4', published: 2018, pages: 223)
       @book_5 = Book.create!(title: 'Book 5', published: 1955, pages: 478)
       @author_1 = Author.create!(name: 'Author 1')
@@ -40,10 +40,12 @@ describe "as a visitor" do
 
     it "displays all information for an authors books" do
       visit author_path(@author_2)
+      save_and_open_page
       within "#book-#{@book_2.id}" do
         expect(page).to have_content(@book_2.title)
         expect(page).to have_content(@book_2.published)
         expect(page).to have_content(@book_2.pages)
+        find "img[src*='https://www.csparks.com/Bookbinding/001%20-%20A%20small%20book.jpg']"
     end
       within "#book-#{@book_1.id}" do
         expect(page).to have_content(@book_1.title)
@@ -51,6 +53,7 @@ describe "as a visitor" do
         expect(page).to have_content(@book_1.pages)
         expect(page).to have_content(@author_1.name)
         expect(page).to_not have_content(@author_2.name)
+        find "img[src*='https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg']"
     end
   end
     it "displays each books highest review" do
