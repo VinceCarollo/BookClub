@@ -42,13 +42,10 @@ RSpec.describe 'When a visitor goes to a books show page' do
     end
 
     expect(page).to have_content(@book_1.pages)
-    # expect(page).to have_css("img[src*=#{https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg}]")
-    # require "pry"; binding.pry
-      # expect(page).to have_css("img[src*='https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg']")
+
       find "img[src*='https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg']"
 
       visit book_path(@book_2)
-      save_and_open_page
       find "img[src*='https://www.csparks.com/Bookbinding/001%20-%20A%20small%20book.jpg']"
   end
 
