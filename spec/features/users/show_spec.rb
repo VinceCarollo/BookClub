@@ -22,7 +22,9 @@ RSpec.describe 'when clicking on a users name on the books show page' do
     it 'shows all reviews made by that user' do
       visit book_path(@book_1)
 
-      click_link @user_1.name
+      within '#top_three' do
+        click_link @user_1.name
+      end
 
       expect(current_path).to eq(user_path(@user_1))
 
