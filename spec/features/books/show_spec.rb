@@ -197,4 +197,20 @@ RSpec.describe 'When a visitor goes to a books show page' do
     end
   end
 
+# I see a link on the page to delete the book.
+# This link should return me to the book index page where I
+# no longer see this book listed.
+#
+# (your controller may need to delete other content before you can delete the book)
+
+  it 'can delete a book' do
+    visit book_path(@book_1)
+
+    click_link "Delete This Book"
+
+    expect(Book.all).not_to include(@book_1)
+    expect(current_path).to eq(books_path)
+    expect(page).not_to have_content(@book_1.title)
+  end
+
 end
