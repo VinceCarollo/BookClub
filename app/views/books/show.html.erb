@@ -5,13 +5,13 @@
   <h4>Top Three Reviews</h4>
   <section id='top_three'>
     <% @top_three_reviews.each do |review| %>
-      <p><%= review.title %>, Rating: <%= review.rating %>, By: <%= review.user.name %></p>
+      <p><%= review.title %>, Rating: <%= review.rating %>, By: <%= link_to review.user.name, user_path(review.user) %></p>
     <% end %>
   </section>
   <h4>Bottom Three Reviews</h4>
   <section id='bottom_three'>
     <% @bottom_three_reviews.each do |review| %>
-      <p><%= review.title %>, Rating: <%= review.rating %>, By: <%= review.user.name %></p>
+      <p><%= review.title %>, Rating: <%= review.rating %>, By: <%= link_to review.user.name, user_path(review.user) %></p>
     <% end %>
   </section>
   <section id='average_rating'>
@@ -28,15 +28,18 @@
     <li><%= link_to author.name, author_path(author) %></li>
   <% end %>
 </ul>
-<h4>Reviews:</h4>
-<p>
+<section id="reviews">
+  <h4>Reviews:</h4>
+  <p>
   <% @book.reviews.each do |review| %>
-  <ul>
-    <h5><%= review.title %></h5>
-    <li>By: <%= link_to review.user.name, user_path(review.user) %></li>
-    <li>Rating: <%= review.rating %></li>
-    <p><%= review.body %></p>
-  </ul>
+    <section id="review-<%= review.id %>"
+      <ul>
+        <h5><%= review.title %></h5>
+        <li>By: <%= link_to review.user.name, user_path(review.user) %></li>
+        <li>Rating: <%= review.rating %></li>
+        <p><%= review.body %></p>
+      </ul>
+      </section>
   <% end %>
-</p>
-<%= link_to "New Review", new_book_review_path(@book) %>
+  <%= link_to "New Review", new_book_review_path(@book) %>
+</section>

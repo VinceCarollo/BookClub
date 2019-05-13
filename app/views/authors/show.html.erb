@@ -9,7 +9,7 @@
   <h2><%= link_to book.title, book_path(book) %></h2>
   <h6>Best Review</h6>
   <p><%= book.highest_review.title %>, Rating: <%= book.highest_review.rating %>, By:
-  <%= book.highest_review.user.name %></p>
+  <%= link_to book.highest_review.user.name, user_path(book.highest_review.user) %></p>
   <img src=<%= book.image_url %> >
   <p>Pages: <%= book.pages %></p>
   <p>Published: <%= book.published %></p>
