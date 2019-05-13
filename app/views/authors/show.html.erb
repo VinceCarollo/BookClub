@@ -1,5 +1,6 @@
 <%= render 'nav' %>
-
+<%# <% require "pry"; binding.pry %> %>
+<%= link_to "Delete #{@author.name}", author_path(@author), :method => :delete %>
 <h1><%= @author.name %></h1>
 
 <% @author.books.each do |book| %>

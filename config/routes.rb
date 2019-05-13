@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   end
   resources :reviews, only: [:destroy]
 
-  resources :authors, only: :show
+  resources :authors, only: [:show, :destroy]
   resources :users, only: :show
 end

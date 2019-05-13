@@ -69,5 +69,14 @@ describe "as a visitor" do
         expect(page).to have_content("User 3")
       end
     end
+
+    it "allows me to delete an author and all their books" do
+      visit author_path(@author_2)
+      click_link "Delete #{@author_2.name}"
+      visit authors_path
+      expect(page).to_not have_content(@author_2.name)
+      visit author_path(@author_1)
+      expect(page).to_not have_content(@book_1.title)
+    end
   end
 end
