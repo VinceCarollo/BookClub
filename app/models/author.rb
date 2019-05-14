@@ -4,6 +4,6 @@ class Author < ApplicationRecord
   validates_presence_of :name
 
   def self.exists(name)
-    self.select(:name).include?(name)
+    self.pluck(:name).include?(name)
   end
 end
