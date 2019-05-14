@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit]
+  before_action :set_book, only: [:show, :destroy]
 
   def index
 
@@ -26,11 +26,12 @@ class BooksController < ApplicationController
   end
 
   def new
+    @book = Book.new
   end
 
   def create
     authors = params[:book][:authors].split(',').map(&:titlecase)
-    (redirect_to new_book_path ; return) if params[:book][:pages].to_i >= 0 \
+    (redirect_to new_book_path ; return) if params[:book][:pages].to_i <= 0  \
                                          ||  Book.exists(book_params[:title])
     authors.each {|author| Author.find_or_create_by(name: author)}
     @book = Book.create!(book_params)
