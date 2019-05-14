@@ -126,11 +126,16 @@ describe Book do
       expect(lowest_3[2]).to eq(@book_2)
     end
 
+    it '.exists' do
+      expect(Book.exists('Book 1')).to be true
+      expect(Book.exists('Book 4')).to be false
+    end
+
   end
 
   describe 'instance methods' do
 
-    it '#review_count' do
+    it '.review_count' do
       book_4 = Book.create!(title: 'Book 4', published: 2018, pages: 223)
       review_8 = Review.create!(title: 'Review 8', rating: 4, body: 'content 8', book: book_4, user: @user_3)
       review_9 = Review.create!(title: 'Review 9', rating: 5, body: 'content 9', book: book_4, user: @user_4)
@@ -139,13 +144,17 @@ describe Book do
       expect(book_4.review_count).to eq(3)
     end
 
-    it '#review_average' do
+    it '.review_average' do
       book_4 = Book.create!(title: 'Book 4', published: 2018, pages: 223)
       review_8 = Review.create!(title: 'Review 8', rating: 4, body: 'content 8', book: book_4, user: @user_3)
       review_9 = Review.create!(title: 'Review 9', rating: 5, body: 'content 9', book: book_4, user: @user_4)
       review_9 = Review.create!(title: 'Review 10', rating: 1, body: 'content 10', book: book_4, user: @user_1)
 
       expect(book_4.review_average.round(2)).to eq(3.33)
+    end
+
+    it '.highest_review' do
+      expect(@book_2.highest_review).to eq(@review_4)
     end
 
   end
