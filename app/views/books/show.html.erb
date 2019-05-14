@@ -19,7 +19,7 @@
     <%= @average_rating.round(2) %>
   </section>
 </section>
-<img src=<%= @book.image_url %> >
+<img class="book-show-image" src=<%= @book.image_url %> >
 <h4>Pages: <%= @book.pages %></h4>
 <h4>Pages: <%= @book.published %></h4>
 <h4>Authors:</h4>
@@ -37,7 +37,7 @@
         <h5><%= review.title %></h5>
         <li>By: <%= link_to review.user.name, user_path(review.user) %></li>
         <li>Rating: <%= review.rating %></li>
-        <p><%= review.body %></p>
+        <li><%= review.body %></li>
       </ul>
       </section>
   <% end %>

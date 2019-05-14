@@ -17,6 +17,9 @@
  body {
    font-family: 'Arvo', serif;
  }
+ .book-show-image{
+   width: 30%;
+ }
 
  .navbar {
    background-color: #adadad!important;
@@ -32,6 +35,15 @@
 
 .book_form {
   padding: 5px 10px 5px 10px;
+}
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: cornsilk;
+  color: white;
+  text-align: center;
 }
 
 #welcome-message {
@@ -55,4 +67,8 @@
 
 #dropdownMenuButton {
   margin-top: 10px;
+}
+
+#reviews {
+padding: 10px;
 }
