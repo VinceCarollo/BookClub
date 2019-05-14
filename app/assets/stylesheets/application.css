@@ -46,11 +46,17 @@
   text-align: center;
 }
 
+
+
+#sort-and-create-books{
+  display: inline-flex;
+}
+
 #welcome-message {
   text-align: center;
   font-size: 40px;
+  color: red;
 }
-
 
 #create-book-btn {
   margin: 10px 0px 10px 0px;
@@ -66,9 +72,28 @@
 }
 
 #dropdownMenuButton {
-  margin-top: 10px;
+  margin: 10px 0px 10px 0px;
 }
 
 #reviews {
 padding: 10px;
+}
+#stats-container{
+  background-color: cornsilk;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #ffddae;
+  padding: 10px;
+}
+
+.grid-item {
+  background-color: #e8ddcd;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 20px;
 }
