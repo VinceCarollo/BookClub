@@ -17,3 +17,20 @@
 .books_small {
   height: 200px;
 }
+
+.books {
+  margin-top: 10px;
+}
+
+#create-book-btn {
+  margin: 10px 0px 10px 0px;
+}
+
+#stats-container {
+  border: 1px solid black;
+  padding: 10px 0px 10px 0px;
+}
+
+#stats-header {
+  text-align: center;
+}
