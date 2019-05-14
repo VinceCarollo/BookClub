@@ -14,6 +14,14 @@
  *= require_self
  */
 
+ body {
+   font-family: 'Arvo', serif;
+ }
+
+ .navbar {
+   background-color: #adadad!important;
+ }
+
 .books_small {
   height: 200px;
 }
@@ -21,6 +29,16 @@
 .books {
   margin-top: 10px;
 }
+
+.book_form {
+  padding: 5px 10px 5px 10px;
+}
+
+#welcome-message {
+  text-align: center;
+  font-size: 40px;
+}
+
 
 #create-book-btn {
   margin: 10px 0px 10px 0px;
@@ -33,4 +51,8 @@
 
 #stats-header {
   text-align: center;
+}
+
+#dropdownMenuButton {
+  margin-top: 10px;
 }

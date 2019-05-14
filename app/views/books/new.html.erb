@@ -1,14 +1,24 @@
 <%= render 'nav' %>
 <%= form_for @book do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :pages %>
-  <%= f.text_field :pages %>
-  <%= f.label :published %>
-  <%= f.text_field :published %>
-  <%= f.label :authors %>
-  <%= f.text_field :authors, value: '' %>
-  <%= f.label :image_url %>
-  <%= f.text_field :image_url %>
-  <%= f.submit %>
+  <p class='book_form'>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  <p class='book_form'>
+    <%= f.label :pages %>
+    <%= f.text_field :pages %>
+  </p>
+  <p class='book_form'>
+    <%= f.label :published %>
+    <%= f.text_field :published %>
+  </p>
+  <p class='book_form'>
+    <%= f.label :authors %>
+    <%= f.text_field :authors, value: '' %>
+  </p>
+  <p class='book_form'>
+    <%= f.label :image_url %>
+    <%= f.text_field :image_url %>
+  </p>
+  <p class='book_form'><%= f.submit %><p>
 <% end %>
