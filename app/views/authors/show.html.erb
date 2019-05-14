@@ -1,23 +1,20 @@
 <%= render 'nav' %>
-<%# <% require "pry"; binding.pry %> %>
 <%= link_to "Delete #{@author.name}", author_path(@author), :method => :delete %>
 <h1><%= @author.name %></h1>
 
 <% @author.books.each do |book| %>
-<section id="book-<%= book.id %>">
-
-
-  <h2><%= link_to book.title, book_path(book) %></h2>
-  <h6>Best Review</h6>
-  <p><%= book.highest_review.title %>, Rating: <%= book.highest_review.rating %>, By:
-  <%= link_to book.highest_review.user.name, user_path(book.highest_review.user) %></p>
-  <img src=<%= book.image_url %> >
-  <p>Pages: <%= book.pages %></p>
-  <p>Published: <%= book.published %></p>
-  <p>Other Authors: <% book.authors.each do |author| %>
-  <%= author.name unless author == @author %>
-<% end %> </p>
-
-</section>
-<p></p>
+  <section id="book-<%= book.id %>">
+    <h2><%= link_to book.title, book_path(book) %></h2>
+    <h6>Best Review</h6>
+    <p><%= book.highest_review.title %>, Rating: <%= book.highest_review.rating %>, By:
+      <%= link_to book.highest_review.user.name, user_path(book.highest_review.user) %>
+    </p>
+    <img src=<%= book.image_url %> >
+    <p>Pages: <%= book.pages %></p>
+    <p>Published: <%= book.published %></p>
+    <p>Other Authors: <% book.authors.each do |author| %>
+        <%= author.name unless author == @author %>
+        <% end %>
+    </p>
+  </section>
 <% end %>

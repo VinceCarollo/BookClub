@@ -1,42 +1,54 @@
 <%= render 'nav' %>
 
-<a href='/books?sort=pagesasc'>Page Count Asc</a>
-<a href= '/books?sort=pagesdesc'>Page Count Desc</a>
-<a href= '/books?sort=publishedasc'>Published Asc</a>
-<a href= '/books?sort=publisheddesc'>Published Desc</a>
-<a href= '/books?sort=reviewsasc'>Reviews Asc</a>
-<a href= '/books?sort=reviewsdesc'>Reviews Desc</a>
-<a href="/books/new">Create Book</a>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sort Books
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="/books?sort=pagesasc">Page Count Asc</a>
+    <a class="dropdown-item" href="/books?sort=pagesdesc">Page Count Desc</a>
+    <a class="dropdown-item" href='/books?sort=publishedasc'>Published Asc</a>
+    <a class="dropdown-item" href="/books?sort=publisheddesc">Published Desc</a>
+    <a class="dropdown-item" href="/books?sort=reviewsasc">Reviews Asc</a>
+    <a class="dropdown-item" href="/books?sort=reviewsdesc">Reviews Desc</a>
+  </div>
+</div>
 
-<section id='statistics'>
-  <h3>Statistics</h3>
-  <p id='highest_rated'>Highest Rated: <% @highest_3.each do |book| %>
-    <section id="book-<%=book.id%>-highest-stats">
-    <p><%= link_to book.title, book_path(book) %></p>
-    <p><%= book.review_average %></p>
-    </section>
-  <% end %>
-  <p id='lowest_rated'> Lowest Rated:  <% @lowest_3.each do |book| %>
-    <section id="book-<%=book.id%>-lowest-stats">
-    <p><%= link_to book.title, book_path(book) %></p>
-    <p><%= book.review_average %></p>
-    </section>
-  <% end %>
-  <p id='most_ratings'>Most Reviews: <% @three_ratingest_users.each do |user| %>
-  <section id="ratings-<%=user.id%>">
-    <p><%= link_to user.name, user_path(user) %>,
-    <%= user.reviews.count %> Reviews</p>
+<button href="/books/new" type="button" class="btn btn-primary" id='create-book-btn'><a style='color:white;' href="/books/new">Create Book</a></button>
+
+<div id='stats-container'>
+  <h3 class="container-fluid" id='stats-header'>Statistics</h3>
+  <section id='statistics' class='container-fluid row' >
+      <div id='highest_rated' class='col'><h5>Highest Rated:</h5> <% @highest_3.each do |book| %>
+          <section id="book-<%=book.id%>-highest-stats">
+          <%= link_to book.title, book_path(book) %>
+          Average Rating: <%= book.review_average.round(2) %>
+          </section>
+        <% end %>
+      </div>
+      <div id='lowest_rated' class='col'><h5>Lowest Rated:</h5>  <% @lowest_3.each do |book| %>
+          <section id="book-<%=book.id%>-lowest-stats">
+          <%= link_to book.title, book_path(book) %>
+          Average Rating: <%= book.review_average.round(2) %>
+          </section>
+        <% end %>
+      </div>
+      <div id='most_ratings' class='col'><h5>Most Reviews:</h5> <% @three_ratingest_users.each do |user| %>
+        <section id="ratings-<%=user.id%>">
+        <%= link_to user.name, user_path(user) %>,
+        <%= user.reviews.count %> Reviews
+        </section>
+        <% end %>
+      </div>
   </section>
-<% end %>
-
-</section>
-  <section class="main-area">
-<% @books.each do |book|  %>
- <section class='books' id="book-<%= book.id %>">
+</div>
+<section class="main-area">
+  <% @books.each do |book|  %>
+  <section class='books container-fluid' id="book-<%= book.id %>">
      <h2><%= link_to book.title, book_path(book) %></h2>
    <p>Average Rating: <%=
      (book.review_average.to_f.round(2)) %></p>
-   <img class="books_small" src="<%= book.image_url %>">
+   <img class="books_small img-thumbnail" src="<%= book.image_url %>">
    <p>Author(s): <% book.authors.each do |author| %>
      <%= link_to author.name, author_path(author) %>
      <% end %>

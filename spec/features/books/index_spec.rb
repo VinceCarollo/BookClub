@@ -121,32 +121,31 @@ describe "as a visitor" do
 
       within '#statistics' do
         within '#highest_rated' do
-          expect(page).to have_content("Highest Rated:")
           within "#book-#{book_4.id}-highest-stats" do
-            expect(page).to have_content(book_4.review_average)
+            expect(page).to have_content(book_4.review_average.round(2))
             expect(page).to have_content(book_4.title)
           end
           within "#book-#{@book_2.id}-highest-stats" do
-            expect(page).to have_content(@book_2.review_average)
+            expect(page).to have_content(@book_2.review_average.round(2))
             expect(page).to have_content(@book_2.title)
           end
           within "#book-#{book_5.id}-highest-stats" do
-            expect(page).to have_content(book_5.review_average)
+            expect(page).to have_content(book_5.review_average.round(2))
             expect(page).to have_content(book_5.title)
           end
       end
 
         within '#lowest_rated' do
           within "#book-#{@book_1.id}-lowest-stats" do
-            expect(page).to have_content(@book_1.review_average)
+            expect(page).to have_content(@book_1.review_average.round(2))
             expect(page).to have_content(@book_1.title)
           end
           within "#book-#{@book_2.id}-lowest-stats" do
-            expect(page).to have_content(@book_2.review_average)
+            expect(page).to have_content(@book_2.review_average.round(2))
             expect(page).to have_content(@book_2.title)
           end
           within "#book-#{@book_3.id}-lowest-stats" do
-            expect(page).to have_content(@book_3.review_average)
+            expect(page).to have_content(@book_3.review_average.round(2))
             expect(page).to have_content(@book_3.title)
           end
         end
