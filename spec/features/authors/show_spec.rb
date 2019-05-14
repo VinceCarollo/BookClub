@@ -77,5 +77,13 @@ describe "as a visitor" do
       visit author_path(@author_1)
       expect(page).to_not have_content(@book_1.title)
     end
+
+    it 'can show an author with a book with no reviews' do
+      book_1 = Book.create!(title: 'Book 1', published: 1967, pages: 155, image_url: 'https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg')
+      author_1 = Author.create!(name: 'Author 1')
+      BookAuthor.create!(book: book_1, author: author_1)
+      visit author_path(author_1)
+      expect(page).to_not have_content("Best Review")
+    end
   end
 end
