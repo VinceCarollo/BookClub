@@ -6,8 +6,8 @@ class Review < ApplicationRecord
 
   validates_presence_of :title, :body, :rating
 
-  def find_book(book_id)
-    Book.find(book_id)
+  def find_book
+    Book.find(self.book_id)
   end
 
   def self.top_three
