@@ -1,15 +1,16 @@
 class BooksController < ApplicationController
+  before_action :set_book, only: [:show, :edit]
 
   def index
-    User.three_ratingest_users
+
     case params[:sort]
-    when 'pagesasc'     ; @books = Book.page_sort_asc
-    when 'pagesdesc'    ; @books = Book.page_sort_desc
-    when 'publishedasc' ; @books = Book.published_sort_asc
-    when 'publisheddesc'; @books = Book.published_sort_desc
-    when 'reviewsasc'   ; @books = Book.reviews_sort_asc
-    when 'reviewsdesc'  ; @books = Book.reviews_sort_desc
-    else ; @books = Book.all
+      when 'pagesasc'     ; @books = Book.page_sort_asc
+      when 'pagesdesc'    ; @books = Book.page_sort_desc
+      when 'publishedasc' ; @books = Book.published_sort_asc
+      when 'publisheddesc'; @books = Book.published_sort_desc
+      when 'reviewsasc'   ; @books = Book.reviews_sort_asc
+      when 'reviewsdesc'  ; @books = Book.reviews_sort_desc
+      else ; @books = Book.all
     end
 
     @highest_3 =Book.highest_3_rated_titles
@@ -25,28 +26,20 @@ class BooksController < ApplicationController
   end
 
   def new
-    @book = Book.new
   end
 
   def create
     authors = params[:book][:authors].split(',').map(&:titlecase)
-    if params[:book][:pages].to_i >= 0
-      if Book.exists(book_params[:title])
-          redirect_to new_book_path
-      else
-        authors.each {|author| Author.find_or_create_by(name: author)}
-        @book = Book.create!(book_params)
-        authors.each {|author| BookAuthor.create!(book: @book, author: Author.find_by(name: author))}
-      end
-      redirect_to book_path(@book)
-    else
-      redirect_to new_book_path
-    end
+    (redirect_to new_book_path ; return) if params[:book][:pages].to_i >= 0 \
+                                         ||  Book.exists(book_params[:title])
+    authors.each {|author| Author.find_or_create_by(name: author)}
+    @book = Book.create!(book_params)
+    authors.each {|author| BookAuthor.create!(book: @book, author: Author.find_by(name: author))}
+    redirect_to book_path(@book)
   end
 
   def destroy
-    Book.destroy(params[:id])
-
+    @book.destroy
     redirect_to books_path
   end
 
@@ -56,6 +49,10 @@ class BooksController < ApplicationController
     new_params = params.require(:book).permit(:title, :pages, :published, :image_url)
     new_params[:title] = new_params[:title].titlecase
     new_params
+  end
+
+  def set_book
+    @book = Book.find(params[:id])
   end
 
 end
