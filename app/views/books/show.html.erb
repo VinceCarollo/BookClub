@@ -21,7 +21,7 @@
 </section>
 <img class="book-show-image" src=<%= @book.image_url %> onerror="this.src='https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg'" >
 <h4>Pages: <%= @book.pages %></h4>
-<h4>Pages: <%= @book.published %></h4>
+<h4>Year Published: <%= @book.published %></h4>
 <h4>Authors:</h4>
 <ul>
   <% @book.authors.each do |author| %>
