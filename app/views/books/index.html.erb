@@ -1,17 +1,18 @@
-
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Sort Books
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="/books?sort=pagesasc">Page Count Asc</a>
-    <a class="dropdown-item" href="/books?sort=pagesdesc">Page Count Desc</a>
-    <a class="dropdown-item" href='/books?sort=publishedasc'>Published Asc</a>
-    <a class="dropdown-item" href="/books?sort=publisheddesc">Published Desc</a>
-    <a class="dropdown-item" href="/books?sort=reviewsasc">Reviews Asc</a>
-    <a class="dropdown-item" href="/books?sort=reviewsdesc">Reviews Desc</a>
+<section id="sort-and-create-books">
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Sort Books
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="/books?sort=pagesasc">Page Count Asc</a>
+      <a class="dropdown-item" href="/books?sort=pagesdesc">Page Count Desc</a>
+      <a class="dropdown-item" href='/books?sort=publishedasc'>Published Asc</a>
+      <a class="dropdown-item" href="/books?sort=publisheddesc">Published Desc</a>
+      <a class="dropdown-item" href="/books?sort=reviewsasc">Reviews Asc</a>
+      <a class="dropdown-item" href="/books?sort=reviewsdesc">Reviews Desc</a>
+    </div>
   </div>
-</div>
+</section>
 
 <button href="/books/new" type="button" class="btn btn-primary" id='create-book-btn'><a style='color:white;' href="/books/new">Create Book</a></button>
 
@@ -41,9 +42,9 @@
       </div>
   </section>
 </div>
-<section class="main-area">
+<section id="main-area" class="grid-container">
   <% @books.each do |book|  %>
-  <section class='books container-fluid' id="book-<%= book.id %>">
+  <section class='grid-item' id="book-<%= book.id %>">
      <h2><%= link_to book.title, book_path(book) %></h2>
    <p>Average Rating: <%=
      (book.review_average.to_f.round(2)) %></p>
