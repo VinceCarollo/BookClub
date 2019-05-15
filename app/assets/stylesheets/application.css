@@ -46,10 +46,14 @@
   text-align: center;
 }
 
-
+.flash {
+  font-size: 25px;
+  text-align: center;
+  color: red;
 
 #sort-and-create-books{
   display: inline-flex;
+
 }
 
 #welcome-message {
