@@ -31,8 +31,16 @@ class BooksController < ApplicationController
 
   def create
     authors = params[:book][:authors].split(',').map(&:titlecase)
-    (redirect_to new_book_path ; return) if params[:book][:pages].to_i <= 0  \
-                                         ||  Book.exists(book_params[:title])
+    if book_params[:pages].to_i < 0 || book_params[:pages].match?(/[a-zA-Z]+/)
+      flash.notice = "Please Enter a Positive Number For Pages!"
+      redirect_to new_book_path
+      return
+    end
+    if Book.exists(book_params[:title])
+      flash.notice = "That Book Already Exists!"
+      redirect_to new_book_path
+      return
+    end
     @book = Book.new(book_params)
     @book.save
     authors.each do |author|
