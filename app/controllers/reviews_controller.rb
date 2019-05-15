@@ -32,7 +32,7 @@ class ReviewsController < ApplicationController
       end
     end
 
-    if (review.rating > 5 || review.rating <= 0)
+    if review.rating.nil? || (review.rating > 5 || review.rating <= 0)
       flash.notice = "Please Enter an Integer Between 1 and 5!"
       redirect_to new_book_review_path(book)
     else
