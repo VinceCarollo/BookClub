@@ -1,3 +1,4 @@
+require "rails_helper"
 # Book titles should be converted to Title Case before saving.
 # Book titles should be unique within the system.
 # For authors, a comma-separated list of names should be entered,
@@ -18,7 +19,7 @@ describe "as a user" do
       fill_in :book_pages, with: "22"
       fill_in :book_published, with: "1988"
       fill_in :book_authors, with: "Tom wong,jones jones"
-      fill_in :book_image_url, with: 'https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg'
+      fill_in :book_image_url, with: 'https://www.csparks.com/Bookbinding/001%20-%20A%20small%20book.jpg'
       click_on "Create Book"
 
       new_book = Book.last
@@ -54,6 +55,7 @@ describe "as a user" do
       expect(new_book.authors.count).to eq(2)
       expect(page).to have_content("Tom Wong")
       expect(page).to have_content("Jones Jones")
+      find "img[src='https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg']"
     end
 
     it "can't create a book with negative pages" do

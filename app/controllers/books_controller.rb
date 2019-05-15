@@ -34,7 +34,7 @@ class BooksController < ApplicationController
     (redirect_to new_book_path ; return) if params[:book][:pages].to_i <= 0  \
                                          ||  Book.exists(book_params[:title])
     authors.each {|author| Author.find_or_create_by(name: author)}
-    @book = Book.create!(book_params)
+    @book = Book.new(book_params) ; @book.save
     authors.each {|author| BookAuthor.create!(book: @book, author: Author.find_by(name: author))}
     redirect_to book_path(@book)
   end
@@ -49,6 +49,7 @@ class BooksController < ApplicationController
   def book_params
     new_params = params.require(:book).permit(:title, :pages, :published, :image_url)
     new_params[:title] = new_params[:title].titlecase
+    new_params[:image_url] = 'https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg' if new_params[:image_url] == ''
     new_params
   end
 
