@@ -34,7 +34,7 @@ class BooksController < ApplicationController
     (redirect_to new_book_path ; return) if params[:book][:pages].to_i <= 0  \
                                          ||  Book.exists(book_params[:title])
     authors.each {|author| Author.find_or_create_by(name: author)}
-    @book = Book.create!(book_params)
+    @book = Book.new(book_params) ; @book.save
     authors.each {|author| BookAuthor.create!(book: @book, author: Author.find_by(name: author))}
     redirect_to book_path(@book)
   end
