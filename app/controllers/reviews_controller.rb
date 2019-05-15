@@ -36,7 +36,7 @@ class ReviewsController < ApplicationController
       flash.notice = "Please Enter an Integer Between 1 and 5!"
       redirect_to new_book_review_path(book)
     else
-      review.user = User.find_or_create_by(name: params[:review][:username])
+      review.user = User.find_or_create_by(name: params[:review][:username].titlecase)
       review.book = book
       review.save
       redirect_to book_path(book)
@@ -44,6 +44,8 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:title, :rating, :body)
+    new_params = params.require(:review).permit(:title, :rating, :body, :username)
+    new_params[:username] = new_params[:username].titlecase
+    new_params
   end
 end

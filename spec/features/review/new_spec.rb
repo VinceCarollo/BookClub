@@ -9,7 +9,6 @@ describe "when I make a review" do
     user_1 = User.create!(name: "User 1")
     review_1 = Review.create!(title: 'Review 1', rating: 2, body: 'content 1', book: book_1, user: user_1)
     visit new_book_review_path(book_1)
-    save_and_open_page
     fill_in :review_username, with: "tom Jones"
     fill_in :review_rating, with: 5
     fill_in :review_body, with: "A bookly book"
