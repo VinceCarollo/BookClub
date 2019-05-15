@@ -49,6 +49,7 @@ class BooksController < ApplicationController
   def book_params
     new_params = params.require(:book).permit(:title, :pages, :published, :image_url)
     new_params[:title] = new_params[:title].titlecase
+    new_params[:image_url] = 'https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg' if new_params[:image_url] == ''
     new_params
   end
 
