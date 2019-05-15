@@ -26,4 +26,19 @@ describe "when I make a review" do
     end
   end
 
+    it "doesnt_error on no review rating" do
+      visit new_book_review_path(@book_1)
+      fill_in :review_username, with: "tom Jones"
+      fill_in :review_rating, with: nil
+      fill_in :review_body, with: "A bookly book"
+      fill_in :review_title, with: "Booking good"
+      click_on "Create Review"
+      expect(current_path).to eq(book_path(@book_1))
+      within("#review-#{Review.last.id}")  do
+        expect(page).to have_content("Tom Jones")
+        expect(page).to have_content("Rating: 5")
+        expect(page).to have_content("A bookly book")
+        expect(page).to have_content("Booking good")
+      end
+    end
 end
