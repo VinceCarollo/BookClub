@@ -31,7 +31,7 @@ class BooksController < ApplicationController
 
   def create
     authors = params[:book][:authors].split(',').map(&:titlecase)
-    if book_params[:pages].to_i < 0 || book_params[:pages].match?(/[a-zA-Z]+/)
+    if book_params[:pages].to_i < 0 || book_params[:pages].match?(/[a-z]+/i)
       flash.notice = "Please Enter a Positive Number For Pages!"
       redirect_to new_book_path
       return

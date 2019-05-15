@@ -6,11 +6,11 @@
   </p>
   <p class='book_form'>
     <%= f.label :pages %>
-    <%= f.text_field :pages %>
+    <%= f.number_field(:pages, in: 1..5000, step: 1) %>
   </p>
   <p class='book_form'>
     <%= f.label :published %>
-    <%= f.text_field :published %>
+    <%= f.number_field(:published, in: 1..Time.now.year, step: 1) %>
   </p>
   <p class='book_form'>
     <%= f.label :authors %>
@@ -18,7 +18,7 @@
   </p>
   <p class='book_form'>
     <%= f.label :image_url %>
-    <%= f.text_field :image_url, value: ''  %>
+    <%= f.url_field :image_url, value: ''  %>
   </p>
   <p class='book_form'><%= f.submit %><p>
 <% end %>
