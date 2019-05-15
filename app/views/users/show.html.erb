@@ -1,16 +1,21 @@
-<%= render 'nav' %>
+
 <h1><%= @user.name %> Reviews</h1>
 <%= link_to "Sort By Newest", :controller => "users", :action => "show" , :sort => "newest" %><br>
 <%= link_to "Sort By Oldest", :controller => "users", :action => "show" , :sort => "oldest" %>
+
+<section class="grid-container">
 <% @user_reviews.each do |review| %>
-  <% book = review.find_book %>
-  <section class='reviews' id="review-<%= review.id %>">
-    <h3><%= link_to book.title, book_path(book) %></h3>
-    <h4><%= review.title %></h4>
-    <p>Date: <%= review.created_at.month %>/<%= review.created_at.day %>/<%= review.created_at.year %></p>
-    <p><%= review.body %></p>
-    <p>Rating: <%= review.rating %></p>
-    <img src="<%= book.image_url %>" >
-    <%= link_to "Delete Review #{review.id}", review_path(review), method: :delete, data: {confirm: "Really delete this review?"} %>
+  <section class ="grid-item">
+    <% book = review.find_book %>
+    <section class='reviews' id="review-<%= review.id %>">
+      <h3><%= link_to book.title, book_path(book) %></h3>
+      <h4><%= review.title %></h4>
+      <p>Date: <%= review.created_at.month %>/<%= review.created_at.day %>/<%= review.created_at.year %></p>
+      <p><%= review.body %></p>
+      <p>Rating: <%= review.rating %></p>
+      <img class="books_small" src="<%= book.image_url %>" >
+      <%= link_to "Delete Review #{review.id}", review_path(review), method: :delete, data: {confirm: "Really delete this review?"} %>
+    </section>
   </section>
 <% end %>
+</section>

@@ -62,17 +62,17 @@ describe 'when clicking on a books name anywhere' do
   end
   it "links to a book show page from books index books section" do
     visit books_path
-    within  ".main-area" do
+    within  "#main-area" do
       click_link "#{@book_1.title}"
     end
     expect(current_path).to eq(book_path(@book_1))
     click_link "Books"
-    within  ".main-area" do
+    within  "#main-area" do
       click_link "#{@book_2.title}"
     end
     expect(current_path).to eq(book_path(@book_2))
     click_link "Books"
-    within  ".main-area" do
+    within  "#main-area" do
       click_link "#{@book_3.title}"
     end
     expect(current_path).to eq(book_path(@book_3))

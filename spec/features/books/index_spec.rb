@@ -79,36 +79,36 @@ describe "as a visitor" do
       visit books_path
 
       click_link 'Page Count Asc'
-      expect(page.all('.books')[0]).to have_content(@book_3.title)
-      expect(page.all('.books')[1]).to have_content(@book_1.title)
-      expect(page.all('.books')[2]).to have_content(@book_2.title)
+      expect(page.all('.grid-item')[0]).to have_content(@book_3.title)
+      expect(page.all('.grid-item')[1]).to have_content(@book_1.title)
+      expect(page.all('.grid-item')[2]).to have_content(@book_2.title)
 
       click_link 'Page Count Desc'
-      expect(page.all('.books')[0]).to have_content(@book_2.title)
-      expect(page.all('.books')[1]).to have_content(@book_1.title)
-      expect(page.all('.books')[2]).to have_content(@book_3.title)
+      expect(page.all('.grid-item')[0]).to have_content(@book_2.title)
+      expect(page.all('.grid-item')[1]).to have_content(@book_1.title)
+      expect(page.all('.grid-item')[2]).to have_content(@book_3.title)
 
       click_link 'Published Asc'
-      expect(page.all('.books')[0]).to have_content(@book_2.title)
-      expect(page.all('.books')[1]).to have_content(@book_1.title)
-      expect(page.all('.books')[2]).to have_content(@book_3.title)
+      expect(page.all('.grid-item')[0]).to have_content(@book_2.title)
+      expect(page.all('.grid-item')[1]).to have_content(@book_1.title)
+      expect(page.all('.grid-item')[2]).to have_content(@book_3.title)
 
       click_link 'Published Desc'
-      expect(page.all('.books')[0]).to have_content(@book_3.title)
-      expect(page.all('.books')[1]).to have_content(@book_1.title)
-      expect(page.all('.books')[2]).to have_content(@book_2.title)
+      expect(page.all('.grid-item')[0]).to have_content(@book_3.title)
+      expect(page.all('.grid-item')[1]).to have_content(@book_1.title)
+      expect(page.all('.grid-item')[2]).to have_content(@book_2.title)
 
       click_link 'Reviews Asc'
 
-      expect(page.all('.books')[0]).to have_content(@book_3.title)
-      expect(page.all('.books')[1]).to have_content(@book_1.title)
-      expect(page.all('.books')[2]).to have_content(@book_2.title)
+      expect(page.all('.grid-item')[0]).to have_content(@book_3.title)
+      expect(page.all('.grid-item')[1]).to have_content(@book_1.title)
+      expect(page.all('.grid-item')[2]).to have_content(@book_2.title)
 
       click_link 'Reviews Desc'
 
-      expect(page.all('.books')[0]).to have_content(@book_2.title)
-      expect(page.all('.books')[1]).to have_content(@book_1.title)
-      expect(page.all('.books')[2]).to have_content(@book_3.title)
+      expect(page.all('.grid-item')[0]).to have_content(@book_2.title)
+      expect(page.all('.grid-item')[1]).to have_content(@book_1.title)
+      expect(page.all('.grid-item')[2]).to have_content(@book_3.title)
 
     end
 
