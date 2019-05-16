@@ -2,7 +2,7 @@
 <%= form_for @book do |f| %>
   <p class='book_form'>
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, required: true %>
   </p>
   <p class='book_form'>
     <%= f.label :pages %>
@@ -14,7 +14,7 @@
   </p>
   <p class='book_form'>
     <%= f.label :authors %>
-    <%= f.text_field :authors, value: '' %>
+    <%= f.text_field :authors, value: '', required: true %>
   </p>
   <p class='book_form'>
     <%= f.label :image_url %>
