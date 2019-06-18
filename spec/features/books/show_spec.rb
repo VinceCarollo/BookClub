@@ -102,7 +102,7 @@ RSpec.describe 'When a visitor goes to a books show page' do
 
       click_link "New Review"
 
-      expect(current_path).to eq(new_book_review_path(@book_1))
+      expect(current_path).to eq(book_reviews_new_path(@book_1))
 
       expect(page).to have_content("Create Review for #{@book_1.title}")
 
@@ -127,7 +127,7 @@ RSpec.describe 'When a visitor goes to a books show page' do
 
       click_link "New Review"
 
-      expect(current_path).to eq(new_book_review_path(@book_1))
+      expect(current_path).to eq(book_reviews_new_path(@book_1))
 
       expect(page).to have_content("Create Review for #{@book_1.title}")
 
@@ -142,7 +142,7 @@ RSpec.describe 'When a visitor goes to a books show page' do
       expect(User.last).to eq(@user_4)
 
 
-      expect(current_path).to eq(new_book_review_path(@book_1))
+      expect(current_path).to eq(book_reviews_new_path(@book_1))
 
       expect(page).to have_content("Create Review for #{@book_1.title}")
 
@@ -156,7 +156,7 @@ RSpec.describe 'When a visitor goes to a books show page' do
       expect(Review.last).to eq(@review_9)
       expect(User.last).to eq(@user_4)
 
-      expect(current_path).to eq(new_book_review_path(@book_1))
+      expect(current_path).to eq(book_reviews_new_path(@book_1))
     end
 
     it 'cant create a review if user has left one for that book' do
@@ -167,7 +167,7 @@ RSpec.describe 'When a visitor goes to a books show page' do
 
       click_link "New Review"
 
-      expect(current_path).to eq(new_book_review_path(@book_5))
+      expect(current_path).to eq(book_reviews_new_path(@book_5))
 
       expect(page).to have_content("Create Review for #{@book_5.title}")
 
