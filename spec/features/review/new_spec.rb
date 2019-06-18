@@ -11,7 +11,7 @@ describe "when I make a review" do
     end
 
   it "creates a new review" do
-    visit new_book_review_path(@book_1)
+    visit book_reviews_new_path(@book_1)
     fill_in :review_username, with: "tom Jones"
     fill_in :review_rating, with: 5
     fill_in :review_body, with: "A bookly book"
@@ -27,13 +27,13 @@ describe "when I make a review" do
   end
 
     it "doesnt_error on no review rating" do
-      visit new_book_review_path(@book_1)
+      visit book_reviews_new_path(@book_1)
       fill_in :review_username, with: "tom Jones"
       fill_in :review_rating, with: nil
       fill_in :review_body, with: "A bookly book"
       fill_in :review_title, with: "Booking good"
       click_on "Create Review"
-      expect(current_path).to eq(new_book_review_path(@book_1))
+      expect(current_path).to eq(book_reviews_new_path(@book_1))
       expect(Review.last).to eq(@review_1)
     end
   end

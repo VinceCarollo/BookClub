@@ -28,13 +28,13 @@ class ReviewsController < ApplicationController
     if !user.nil?
       if users.include?(user.id)
         flash.notice = "You Have Already Left a Review for This Book!"
-        redirect_to new_book_review_path(book) and return
+        redirect_to book_reviews_new_path(book) and return
       end
     end
 
     if review.rating.nil? || (review.rating > 5 || review.rating <= 0)
       flash.notice = "Please Enter an Integer Between 1 and 5!"
-      redirect_to new_book_review_path(book)
+      redirect_to book_reviews_new_path(book)
     else
       review.user = User.find_or_create_by(name: params[:review][:username].titlecase)
       review.book = book
