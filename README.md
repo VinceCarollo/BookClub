@@ -26,14 +26,6 @@ bundle exec rails db:{create,migrate,seed}
 bundle exec rspec
 ```
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
 ## Built With
 
 * [Ruby](https://rubyonrails.org/) - 2.4.1
